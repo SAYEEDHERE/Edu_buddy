@@ -1,0 +1,411 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     ONBOARDING WIZARD MODAL
+     Insert this entire block directly before </body> in index.html.
+     Place it AFTER the existing auth-modal div.
+═══════════════════════════════════════════════════════════════ -->
+
+<div class="onboarding-overlay" id="onboarding-modal"
+     role="dialog" aria-modal="true"
+     aria-labelledby="ob-title" aria-hidden="true">
+
+  <div class="onboarding-card" id="onboarding-card">
+
+    <!-- ── Progress bar ───────────────────────────────────── -->
+    <div class="ob-topbar">
+      <span class="ob-step-label" id="ob-step-label">Step 1 of 4</span>
+      <div class="ob-progress-track">
+        <div class="ob-progress-fill" id="ob-progress-fill" style="width: 25%;"></div>
+      </div>
+      <div class="ob-step-dots">
+        <span class="ob-dot active" data-dot="1"></span>
+        <span class="ob-dot"        data-dot="2"></span>
+        <span class="ob-dot"        data-dot="3"></span>
+        <span class="ob-dot"        data-dot="4"></span>
+      </div>
+    </div>
+
+    <!-- ── Step panels ────────────────────────────────────── -->
+    <div class="ob-body">
+
+      <!-- ─────────────────────────────────────────────────────
+           STEP 1 — About You
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step active" data-step="1">
+
+        <div class="ob-step-header">
+          <h2 id="ob-title">Tell us about yourself</h2>
+          <p>A few quick basics to set up your learning profile.</p>
+        </div>
+
+        <div class="ob-form-error" id="ob-error-1" role="alert"></div>
+
+        <!-- Preferred name -->
+        <div class="ob-field">
+          <label for="ob-name">Preferred name</label>
+          <input class="ob-input" type="text" id="ob-name"
+                 placeholder="e.g. Alex" autocomplete="given-name" />
+          <div class="ob-field-error" id="ob-err-name">
+            Please enter your preferred name.
+          </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="ob-field">
+          <label>Gender</label>
+          <div class="ob-radio-group grid-2" id="ob-gender-group">
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-m" value="M" />
+              <label for="ob-gender-m">
+                <span class="ob-radio-mark"></span>Male
+              </label>
+            </div>
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-f" value="F" />
+              <label for="ob-gender-f">
+                <span class="ob-radio-mark"></span>Female
+              </label>
+            </div>
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-nb" value="N" />
+              <label for="ob-gender-nb">
+                <span class="ob-radio-mark"></span>Non-binary
+              </label>
+            </div>
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-x" value="X" />
+              <label for="ob-gender-x">
+                <span class="ob-radio-mark"></span>Prefer not to say
+              </label>
+            </div>
+          </div>
+          <div class="ob-field-error" id="ob-err-gender">
+            Please select a gender option.
+          </div>
+        </div>
+
+        <!-- Age band -->
+        <div class="ob-field">
+          <label for="ob-age-band">Age band</label>
+          <select class="ob-select" id="ob-age-band">
+            <option value="" disabled selected>Select your age range</option>
+            <option value="0-35">Under 35</option>
+            <option value="35-55">35–55</option>
+            <option value="55<=">55 or older</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-age-band">
+            Please select your age band.
+          </div>
+        </div>
+
+        <!-- Student type -->
+        <div class="ob-field">
+          <label for="ob-student-type">Academic level</label>
+          <select class="ob-select" id="ob-student-type">
+            <option value="" disabled selected>Select your level</option>
+            <option value="undergraduate">Undergraduate</option>
+            <option value="postgraduate">Postgraduate / Masters</option>
+            <option value="doctoral">Doctoral / PhD</option>
+            <option value="professional">Professional / CPD</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-student-type">
+            Please select your academic level.
+          </div>
+        </div>
+
+        <div class="ob-footer">
+          <div></div>
+          <button class="ob-btn-next" id="ob-next-1" type="button">
+            Continue
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+      </div><!-- /step 1 -->
+
+
+      <!-- ─────────────────────────────────────────────────────
+           STEP 2 — Module Details
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step" data-step="2">
+
+        <div class="ob-step-header">
+          <h2>Your module details</h2>
+          <p>Which course are you studying and at what level?</p>
+        </div>
+
+        <div class="ob-form-error" id="ob-error-2" role="alert"></div>
+
+        <!-- Highest education -->
+        <div class="ob-field">
+          <label for="ob-highest-edu">Highest education level</label>
+          <select class="ob-select" id="ob-highest-edu">
+            <option value="" disabled selected>Select your highest qualification</option>
+            <option value="No Formal quals">No formal qualifications</option>
+            <option value="Lower Than A Level">Below A-Level / GCSE</option>
+            <option value="A Level or Equivalent">A Level or equivalent</option>
+            <option value="HE Qualification">Higher Education Qualification</option>
+            <option value="Post Graduate Qualification">Postgraduate Qualification</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-highest-edu">
+            Please select your education level.
+          </div>
+        </div>
+
+        <!-- Module code + Presentation code (side by side) -->
+        <div class="ob-row">
+          <div class="ob-field">
+            <label for="ob-code-module">Module code</label>
+            <select class="ob-select" id="ob-code-module">
+              <option value="" disabled selected>Select</option>
+              <option value="AAA">AAA</option>
+              <option value="BBB">BBB</option>
+              <option value="CCC">CCC</option>
+              <option value="DDD">DDD</option>
+              <option value="EEE">EEE</option>
+              <option value="FFF">FFF</option>
+              <option value="GGG">GGG</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-code-module">Required.</div>
+          </div>
+          <div class="ob-field">
+            <label for="ob-code-pres">Presentation / term</label>
+            <select class="ob-select" id="ob-code-pres">
+              <option value="" disabled selected>Select</option>
+              <option value="2013B">2013B</option>
+              <option value="2013J">2013J</option>
+              <option value="2014B">2014B</option>
+              <option value="2014J">2014J</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-code-pres">Required.</div>
+          </div>
+        </div>
+
+        <!-- Studied credits -->
+        <div class="ob-field">
+          <label for="ob-studied-credits">Studied credits (workload)</label>
+          <select class="ob-select" id="ob-studied-credits">
+            <option value="" disabled selected>Select your credit load</option>
+            <option value="30">30 credits</option>
+            <option value="60">60 credits</option>
+            <option value="120">120 credits</option>
+            <option value="150">150 credits</option>
+            <option value="180">180 credits</option>
+            <option value="240">240 credits</option>
+            <option value="270">270 credits</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-studied-credits">
+            Please select your workload.
+          </div>
+        </div>
+
+        <div class="ob-footer">
+          <button class="ob-btn-back" id="ob-back-2" type="button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M11 7H3M6.5 3.5L3 7l3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </button>
+          <button class="ob-btn-next" id="ob-next-2" type="button">
+            Continue
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+      </div><!-- /step 2 -->
+
+
+      <!-- ─────────────────────────────────────────────────────
+           STEP 3 — Study Context
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step" data-step="3">
+
+        <div class="ob-step-header">
+          <h2>Study context</h2>
+          <p>Background details that help us calibrate your AI plan.</p>
+        </div>
+
+        <div class="ob-form-error" id="ob-error-3" role="alert"></div>
+
+        <!-- Region + IMD band -->
+        <div class="ob-row">
+          <div class="ob-field">
+            <label for="ob-region">Region</label>
+            <select class="ob-select" id="ob-region">
+              <option value="" disabled selected>Select</option>
+              <option value="East Anglian Region">East Anglian</option>
+              <option value="East Midlands Region">East Midlands</option>
+              <option value="Ireland">Ireland</option>
+              <option value="London Region">London</option>
+              <option value="North Region">North</option>
+              <option value="North Western Region">North Western</option>
+              <option value="Scotland">Scotland</option>
+              <option value="South East Region">South East</option>
+              <option value="South Region">South</option>
+              <option value="South West Region">South West</option>
+              <option value="Wales">Wales</option>
+              <option value="West Midlands Region">West Midlands</option>
+              <option value="Yorkshire Region">Yorkshire</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-region">
+              Please select a region.
+            </div>
+          </div>
+          <div class="ob-field">
+            <label for="ob-imd-band">Socioeconomic band</label>
+            <select class="ob-select" id="ob-imd-band">
+              <option value="" disabled selected>IMD band</option>
+              <option value="0-10%">0–10%</option>
+              <option value="10-20">10–20%</option>
+              <option value="20-30%">20–30%</option>
+              <option value="30-40%">30–40%</option>
+              <option value="40-50%">40–50%</option>
+              <option value="50-60%">50–60%</option>
+              <option value="60-70%">60–70%</option>
+              <option value="70-80%">70–80%</option>
+              <option value="80-90%">80–90%</option>
+              <option value="90-100%">90–100%</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-imd-band">
+              Please select a band.
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous attempts + Module length -->
+        <div class="ob-row">
+          <div class="ob-field">
+            <label for="ob-prev-attempts">Previous attempts</label>
+            <select class="ob-select" id="ob-prev-attempts">
+              <option value="" disabled selected>How many?</option>
+              <option value="0">0 — First attempt</option>
+              <option value="1">1 previous attempt</option>
+              <option value="2">2 previous attempts</option>
+              <option value="3">3 or more</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-prev-attempts">
+              Please select.
+            </div>
+          </div>
+          <div class="ob-field">
+            <label for="ob-mod-length">Module length (days)</label>
+            <select class="ob-select" id="ob-mod-length">
+              <option value="" disabled selected>Duration</option>
+              <option value="240">240 days</option>
+              <option value="269">269 days</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-mod-length">
+              Please select.
+            </div>
+          </div>
+        </div>
+
+        <!-- Disability (optional) -->
+        <div class="ob-field">
+          <label for="ob-disability">
+            Accessibility / disability support
+            <span class="ob-optional">(optional)</span>
+          </label>
+          <select class="ob-select" id="ob-disability">
+            <option value="" selected>Prefer not to say</option>
+            <option value="Y">Yes — I use accessibility support</option>
+            <option value="N">No — I do not require support</option>
+          </select>
+        </div>
+
+        <!-- Weekly study availability (optional) -->
+        <div class="ob-field">
+          <label for="ob-weekly-hours">
+            Weekly study availability
+            <span class="ob-optional">(optional)</span>
+          </label>
+          <select class="ob-select" id="ob-weekly-hours">
+            <option value="" selected>Choose an estimate</option>
+            <option value="under5">Less than 5 hours / week</option>
+            <option value="5-10">5–10 hours / week</option>
+            <option value="10-20">10–20 hours / week</option>
+            <option value="20+">More than 20 hours / week</option>
+          </select>
+        </div>
+
+        <div class="ob-footer">
+          <button class="ob-btn-back" id="ob-back-3" type="button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M11 7H3M6.5 3.5L3 7l3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </button>
+          <button class="ob-btn-next" id="ob-next-3" type="button">
+            Review
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+      </div><!-- /step 3 -->
+
+
+      <!-- ─────────────────────────────────────────────────────
+           STEP 4 — Review + Submit
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step" data-step="4">
+
+        <div class="ob-step-header">
+          <h2>Review your profile</h2>
+          <p>Everything look right? You can go back to edit anything.</p>
+        </div>
+
+        <div class="ob-form-error" id="ob-error-4" role="alert"></div>
+
+        <!-- Review grid is populated dynamically by onboarding.js -->
+        <div class="ob-review-grid" id="ob-review-grid"></div>
+
+        <div class="ob-footer">
+          <button class="ob-btn-back" id="ob-back-4" type="button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M11 7H3M6.5 3.5L3 7l3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </button>
+          <button class="ob-btn-submit" id="ob-submit-btn" type="button">
+            <span class="ob-spinner" id="ob-spinner"></span>
+            Submit Profile
+          </button>
+        </div>
+
+      </div><!-- /step 4 -->
+
+    </div><!-- /ob-body -->
+
+    <!-- ── Success state (shown in place of ob-body) ──────── -->
+    <div class="ob-success" id="ob-success" aria-live="polite">
+      <div class="ob-success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 13l4 4L19 7" stroke="#60a5fa" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Profile complete!</h2>
+      <p>Your learning profile has been saved.<br>
+         We're building your personalised plan.</p>
+      <button class="ob-success-btn" id="ob-success-cta" type="button">
+        Go to Dashboard →
+      </button>
+    </div>
+
+  </div><!-- /onboarding-card -->
+</div><!-- /onboarding-overlay -->
+
+<!-- Onboarding module — load AFTER script.js -->
+<script type="module" src="onboarding.js"></script>

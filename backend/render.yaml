@@ -1,0 +1,20 @@
+# render.yaml — Render.com deployment config
+# Place this in your backend root directory.
+
+services:
+  - type: web
+    name: edubuddy-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false          # Set manually in Render dashboard
+      - key: MODEL_VERSION
+        value: xgboost-v1.0
+    # Mount your .pkl files as a disk (Render paid plan)
+    # or upload them into the repo under /models/
+    disk:
+      name: models
+      mountPath: /opt/render/project/src/models
+      sizeGB: 1

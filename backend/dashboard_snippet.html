@@ -1,0 +1,201 @@
+<!--
+  ════════════════════════════════════════════════════════════
+  EDUBUDDY — Dashboard Result Section Snippet
+  ════════════════════════════════════════════════════════════
+  Paste this section into index.html (after your hero section)
+  OR into a new dashboard.html.
+
+  All IDs match exactly what prediction.js targets.
+  All classes match your existing dark premium design system.
+  No new CSS needed — uses your existing :root tokens.
+  ════════════════════════════════════════════════════════════
+-->
+
+<!-- Loading state (shown while prediction is in flight) -->
+<section id="eb-loading-section" style="display:none; text-align:center; padding: 80px 20px;">
+  <div class="eb-spinner-wrap">
+    <div class="ob-spinner show" style="width:32px;height:32px;border-width:3px;margin:0 auto 20px;"></div>
+    <p style="color:#71717a; font-size:14px;">Analysing your profile with AI…</p>
+  </div>
+</section>
+
+<!-- Error state -->
+<div id="eb-prediction-error"
+     style="display:none; color:#f87171; background:rgba(248,113,113,0.07);
+            border:1px solid rgba(248,113,113,0.2); border-radius:8px;
+            padding:12px 16px; margin:20px auto; max-width:600px; font-size:13px;">
+</div>
+
+<!-- ── Result section (hidden until prediction returns) ───────────────────── -->
+<section id="eb-result-section"
+         style="display:none; max-width:900px; margin:60px auto; padding:0 24px;">
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <div style="margin-bottom:32px;">
+    <p style="font-size:11px;font-weight:600;color:#52525b;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">
+      AI Learning Coach
+    </p>
+    <h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:#fff;letter-spacing:-.4px;margin-bottom:6px;">
+      Your Personalised Prediction
+    </h2>
+    <p style="font-size:14px;color:#71717a;">
+      Based on your profile, here's where you stand and what to do next.
+    </p>
+  </div>
+
+  <!-- ── Row 1: Probability + Risk ───────────────────────────────────────── -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+
+    <!-- Success Probability Card -->
+    <div style="background:#0A0A14;border:1px solid rgba(255,255,255,0.09);
+                border-radius:12px;padding:28px 24px;text-align:center;">
+      <p style="font-size:11px;font-weight:600;color:#52525b;letter-spacing:.08em;
+                text-transform:uppercase;margin-bottom:16px;">Success Probability</p>
+      <p id="eb-probability"
+         style="font-family:var(--font-display);font-size:52px;font-weight:700;
+                color:#fff;letter-spacing:-2px;margin-bottom:4px;">—</p>
+      <p id="eb-prediction-label"
+         style="font-size:12px;font-weight:600;letter-spacing:.06em;color:#71717a;">
+        Calculating…
+      </p>
+    </div>
+
+    <!-- Risk Level Card -->
+    <div style="background:#0A0A14;border:1px solid rgba(255,255,255,0.09);
+                border-radius:12px;padding:28px 24px;text-align:center;">
+      <p style="font-size:11px;font-weight:600;color:#52525b;letter-spacing:.08em;
+                text-transform:uppercase;margin-bottom:16px;">Risk Level</p>
+      <p id="eb-risk-level"
+         style="font-family:var(--font-display);font-size:36px;font-weight:600;
+                color:#fff;letter-spacing:-.5px;margin-bottom:4px;">—</p>
+      <span id="eb-risk-badge"
+            style="display:inline-block;font-size:11px;font-weight:600;
+                   padding:3px 10px;border-radius:100px;background:rgba(255,255,255,0.05);
+                   color:#71717a;letter-spacing:.04em;"
+            data-risk="">
+        Weeks remaining: <span id="eb-remaining-weeks">—</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ── Row 2: Current vs Target ────────────────────────────────────────── -->
+  <div style="background:#0A0A14;border:1px solid rgba(255,255,255,0.09);
+              border-radius:12px;padding:24px;margin-bottom:16px;">
+    <p style="font-size:11px;font-weight:600;color:#52525b;letter-spacing:.08em;
+              text-transform:uppercase;margin-bottom:20px;">
+      Your Behaviour vs Successful Students
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+
+      <!-- Study Days -->
+      <div>
+        <p style="font-size:12px;color:#3f3f46;margin-bottom:8px;">Active Study Days</p>
+        <p style="font-size:20px;font-weight:600;color:#fff;margin-bottom:2px;">
+          <span id="eb-curr-days">—</span>
+        </p>
+        <p style="font-size:12px;color:#52525b;">
+          Target: <span id="eb-target-days" style="color:#93c5fd;">—</span>
+        </p>
+      </div>
+
+      <!-- LMS Clicks -->
+      <div>
+        <p style="font-size:12px;color:#3f3f46;margin-bottom:8px;">LMS Clicks</p>
+        <p style="font-size:20px;font-weight:600;color:#fff;margin-bottom:2px;">
+          <span id="eb-curr-clicks">—</span>
+        </p>
+        <p style="font-size:12px;color:#52525b;">
+          Target: <span id="eb-target-clicks" style="color:#93c5fd;">—</span>
+        </p>
+      </div>
+
+      <!-- Assignment Score -->
+      <div>
+        <p style="font-size:12px;color:#3f3f46;margin-bottom:8px;">Assignment Score</p>
+        <p style="font-size:20px;font-weight:600;color:#fff;margin-bottom:2px;">
+          <span id="eb-curr-score">—</span>
+        </p>
+        <p style="font-size:12px;color:#52525b;">
+          Target: <span id="eb-target-score" style="color:#93c5fd;">—</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Row 3: Weekly Plan ───────────────────────────────────────────────── -->
+  <div style="background:#0A0A14;border:1px solid rgba(255,255,255,0.09);
+              border-radius:12px;padding:24px;margin-bottom:16px;">
+    <p style="font-size:11px;font-weight:600;color:#52525b;letter-spacing:.08em;
+              text-transform:uppercase;margin-bottom:20px;">Your Weekly Plan</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div>
+        <p style="font-size:12px;color:#3f3f46;margin-bottom:6px;">Study Frequency</p>
+        <p id="eb-plan-days" style="font-size:15px;font-weight:600;color:#fff;">—</p>
+      </div>
+      <div>
+        <p style="font-size:12px;color:#3f3f46;margin-bottom:6px;">Platform Engagement</p>
+        <p id="eb-plan-clicks" style="font-size:15px;font-weight:600;color:#fff;">—</p>
+      </div>
+      <div>
+        <p style="font-size:12px;color:#3f3f46;margin-bottom:6px;">Grade Improvement</p>
+        <p style="font-size:15px;font-weight:600;color:#fff;">
+          +<span id="eb-extra-marks">0</span> marks
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Row 4: Simulation Cards ─────────────────────────────────────────── -->
+  <div style="background:#0A0A14;border:1px solid rgba(255,255,255,0.09);
+              border-radius:12px;padding:24px;">
+    <p style="font-size:11px;font-weight:600;color:#52525b;letter-spacing:.08em;
+              text-transform:uppercase;margin-bottom:20px;">What-If Simulation</p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);
+                  border-radius:8px;padding:16px;text-align:center;">
+        <p style="font-size:11px;color:#52525b;margin-bottom:10px;">If you study more</p>
+        <p id="eb-sim-study"
+           style="font-size:24px;font-weight:700;color:#93c5fd;letter-spacing:-.5px;">—</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);
+                  border-radius:8px;padding:16px;text-align:center;">
+        <p style="font-size:11px;color:#52525b;margin-bottom:10px;">If scores improve</p>
+        <p id="eb-sim-assign"
+           style="font-size:24px;font-weight:700;color:#93c5fd;letter-spacing:-.5px;">—</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);
+                  border-radius:8px;padding:16px;text-align:center;">
+        <p style="font-size:11px;color:#52525b;margin-bottom:10px;">If LMS improves</p>
+        <p id="eb-sim-lms"
+           style="font-size:24px;font-weight:700;color:#93c5fd;letter-spacing:-.5px;">—</p>
+      </div>
+
+      <div style="background:rgba(37,99,235,0.07);border:1px solid rgba(37,99,235,0.2);
+                  border-radius:8px;padding:16px;text-align:center;">
+        <p style="font-size:11px;color:#52525b;margin-bottom:10px;">Ideal scenario</p>
+        <p id="eb-sim-ideal"
+           style="font-size:24px;font-weight:700;color:#60a5fa;letter-spacing:-.5px;">—</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!--
+  ── Risk badge colours ─────────────────────────────────────
+  Add these rules to the end of style.css (or onboarding_additions.css):
+
+  #eb-risk-badge[data-risk="low"]      { background:rgba(16,185,129,0.1); color:#6ee7b7; }
+  #eb-risk-badge[data-risk="moderate"] { background:rgba(251,191,36,0.1);  color:#fcd34d; }
+  #eb-risk-badge[data-risk="high"]     { background:rgba(248,113,113,0.1); color:#fca5a5; }
+
+  ── script tag to add in index.html (after onboarding.js):
+  <script type="module" src="prediction.js"></script>
+-->

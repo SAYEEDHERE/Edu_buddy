@@ -1,0 +1,487 @@
+/* ══════════════════════════════════════════════════════════
+   ONBOARDING WIZARD — Step 2
+   Append these rules verbatim to the END of style.css.
+   All tokens reference the existing :root variables.
+   No existing rules are overwritten.
+══════════════════════════════════════════════════════════ */
+
+/* ── Overlay backdrop ───────────────────────────────────── */
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;                       /* sits above auth modal (z:1000) */
+  background: rgba(6, 8, 15, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.onboarding-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Card shell ─────────────────────────────────────────── */
+.onboarding-card {
+  background: #0A0A14;
+  width: 100%;
+  max-width: 560px;
+  max-height: 92vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--r-lg);
+  box-shadow: 0 32px 80px -12px rgba(0, 0, 0, 0.9),
+              0 0 0 1px rgba(255, 255, 255, 0.04);
+  transform: translateY(24px);
+  transition: transform 0.35s var(--ease);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+.onboarding-card::-webkit-scrollbar { width: 4px; }
+.onboarding-card::-webkit-scrollbar-track { background: transparent; }
+.onboarding-card::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+.onboarding-overlay.open .onboarding-card {
+  transform: translateY(0);
+}
+
+/* ── Top progress bar ───────────────────────────────────── */
+.ob-topbar {
+  padding: 24px 32px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ob-step-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #52525b;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 68px;
+}
+.ob-progress-track {
+  flex: 1;
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.ob-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 100px;
+  transition: width 0.45s var(--ease);
+}
+.ob-step-dots {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.ob-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.3s;
+}
+.ob-dot.active  { background: var(--accent); }
+.ob-dot.done    { background: rgba(37, 99, 235, 0.4); }
+
+/* ── Card body ──────────────────────────────────────────── */
+.ob-body {
+  padding: 28px 32px 32px;
+}
+
+/* ── Step transition ────────────────────────────────────── */
+.ob-step { display: none; }
+.ob-step.active {
+  display: block;
+  animation: ob-step-in 0.28s ease forwards;
+}
+@keyframes ob-step-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Step header ────────────────────────────────────────── */
+.ob-step-header { margin-bottom: 26px; }
+.ob-step-header h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.4px;
+  margin-bottom: 5px;
+}
+.ob-step-header p {
+  font-size: 13.5px;
+  color: #71717a;
+  line-height: 1.5;
+}
+
+/* ── Field wrapper ──────────────────────────────────────── */
+.ob-field { margin-bottom: 16px; }
+.ob-field label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #e4e4e7;
+  margin-bottom: 7px;
+  letter-spacing: 0.01em;
+}
+.ob-field label .ob-optional {
+  font-weight: 400;
+  color: #3f3f46;
+  margin-left: 4px;
+}
+
+/* ── Text inputs ────────────────────────────────────────── */
+.ob-input {
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--r-sm);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.ob-input::placeholder { color: #3f3f46; }
+.ob-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(37, 99, 235, 0.06);
+}
+.ob-input.ob-error { border-color: rgba(248, 113, 113, 0.55); }
+
+/* ── Select dropdowns ───────────────────────────────────── */
+.ob-select {
+  width: 100%;
+  padding: 11px 38px 11px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--r-sm);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2352525b' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.ob-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: rgba(37, 99, 235, 0.06);
+}
+.ob-select.ob-error { border-color: rgba(248, 113, 113, 0.55); }
+.ob-select option   { background: #0A0A14; color: #ffffff; }
+
+/* ── Two-column grid ────────────────────────────────────── */
+.ob-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── Radio button pills ─────────────────────────────────── */
+.ob-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ob-radio-group.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.ob-radio-btn { position: relative; }
+.ob-radio-btn input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.ob-radio-btn label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 13px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  font-size: 13.5px;
+  color: #a1a1aa;
+  font-weight: 400;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  margin-bottom: 0;
+  letter-spacing: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.ob-radio-btn label:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #e4e4e7;
+}
+.ob-radio-btn input:checked + label {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.4);
+  color: #93c5fd;
+}
+.ob-radio-mark {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+.ob-radio-btn input:checked + label .ob-radio-mark {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.ob-radio-btn input:checked + label .ob-radio-mark::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+.ob-radio-group.ob-error label {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+/* ── Inline field error ─────────────────────────────────── */
+.ob-field-error {
+  font-size: 12px;
+  color: #f87171;
+  margin-top: 6px;
+  display: none;
+  line-height: 1.4;
+}
+.ob-field-error.show { display: block; }
+
+/* ── Global step error banner ───────────────────────────── */
+.ob-form-error {
+  font-size: 13px;
+  font-weight: 500;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.07);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  display: none;
+  line-height: 1.5;
+}
+.ob-form-error.show { display: block; }
+
+/* ── Footer nav ─────────────────────────────────────────── */
+.ob-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.ob-footer-right {
+  margin-left: auto;
+}
+
+.ob-btn-back {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #71717a;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--r-sm);
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.ob-btn-back:hover {
+  color: #e4e4e7;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.ob-btn-next,
+.ob-btn-submit {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 9px 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s, opacity 0.15s;
+  letter-spacing: 0.02em;
+}
+.ob-btn-next:hover  { background: var(--accent-hover); }
+.ob-btn-submit      { background: #2563eb; }
+.ob-btn-submit:hover { background: #1d4ed8; }
+.ob-btn-next:disabled,
+.ob-btn-submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Review step ────────────────────────────────────────── */
+.ob-review-section-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #3f3f46;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 14px 16px 5px;
+}
+.ob-review-grid {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.ob-review-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+.ob-review-row:last-child { border-bottom: none; }
+.ob-review-key {
+  font-size: 12px;
+  color: #52525b;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 120px;
+}
+.ob-review-val {
+  font-size: 13.5px;
+  color: #e4e4e7;
+  text-align: right;
+}
+.ob-review-val.ob-review-empty {
+  color: #3f3f46;
+  font-style: italic;
+}
+.ob-review-edit {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+  text-decoration: none;
+}
+.ob-review-edit:hover { opacity: 0.65; }
+
+/* ── Submit loading spinner ─────────────────────────────── */
+.ob-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: ob-spin 0.65s linear infinite;
+  display: none;
+  flex-shrink: 0;
+}
+.ob-spinner.show { display: block; }
+@keyframes ob-spin { to { transform: rotate(360deg); } }
+
+/* ── Success state ──────────────────────────────────────── */
+.ob-success {
+  display: none;
+  text-align: center;
+  padding: 52px 32px 44px;
+}
+.ob-success.show { display: block; }
+.ob-success-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+}
+.ob-success h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+.ob-success p {
+  font-size: 14px;
+  color: #71717a;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+.ob-success-btn {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 11px 28px;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.02em;
+}
+.ob-success-btn:hover { background: var(--accent-hover); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .ob-topbar  { padding: 18px 20px 0; }
+  .ob-body    { padding: 22px 20px 24px; }
+  .ob-success { padding: 40px 20px 36px; }
+  .onboarding-card { border-radius: var(--r-md); }
+
+  .ob-row              { grid-template-columns: 1fr; }
+  .ob-radio-group.grid-2 { grid-template-columns: 1fr; }
+
+  .ob-review-key { min-width: 80px; }
+}

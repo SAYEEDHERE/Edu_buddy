@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — EduBuddy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HEADER — identical structure to index.html.
+       Nav links point to index.html#section (cross-page).
+       Auth button hrefs stay "#" so script.js handles them.
+  ════════════════════════════════════════════════════════ -->
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="EduBuddy"
+             class="logo-img"
+             onerror="this.style.display='none';document.querySelector('.logo-wordmark').style.display='block'" />
+        <span class="logo-wordmark">EduBuddy</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="index.html#product">Product</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#for-whom">For whom</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <span id="nav-user-greeting" class="nav-greeting" style="display: none;"></span>
+        <a href="#" class="btn-text" id="nav-login-btn">Log in</a>
+        <a href="#" class="btn-solid" id="nav-signup-btn">Get EduBuddy free</a>
+      </div>
+
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+          <rect y="0"  width="20" height="2" rx="1" fill="currentColor"/>
+          <rect y="6"  width="20" height="2" rx="1" fill="currentColor"/>
+          <rect y="12" width="20" height="2" rx="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+      <a href="index.html#product">Product</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#for-whom">For whom</a>
+      <a href="index.html#pricing">Pricing</a>
+      <hr />
+      <a href="#" id="drawer-login-btn">Log in</a>
+      <a href="#" class="drawer-cta" id="drawer-signup-btn">Get EduBuddy free →</a>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════
+         1. DARK HERO
+         Reuses .hero class so all dark overrides apply
+         automatically from style.css.
+    ════════════════════════════════════════════════════ -->
+    <section class="hero about-hero">
+      <div class="hero-glow about-hero-glow"></div>
+
+      <div class="hero-inner container about-hero-inner">
+        <div class="hero-label">
+          <span class="label-dot"></span>
+          <span>Our mission</span>
+        </div>
+
+        <h1 class="hero-heading">
+          We built the engine<br />
+          that <em>sees</em> your exam<br />
+          before you do.
+        </h1>
+
+        <p class="hero-body">
+          EduBuddy doesn't help students study more.
+          It predicts exactly where they'll land — and builds the
+          precise, step-by-step roadmap to close every gap.
+          Before the clock starts.
+        </p>
+
+        <div class="about-hero-scroll-hint">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 3v12M4 10l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Scroll to read our story</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         2. ORIGIN STORY
+         Editorial, left-aligned prose. Max-width ~720px
+         centered for a comfortable reading line-length.
+    ════════════════════════════════════════════════════ -->
+    <section class="about-origin">
+      <div class="container">
+        <div class="origin-inner">
+
+          <div class="section-eyebrow">Origin</div>
+
+          <blockquote class="origin-pull" data-reveal>
+            "We had a deadline and a dataset.<br />
+            We chose to build something that actually matters."
+          </blockquote>
+
+          <div class="origin-prose">
+            <p data-reveal>
+              EduBuddy started in February 2026 as a Semester&nbsp;2 capstone project
+              for five Bachelor's Computer Science students at IIT&nbsp;Patna.
+              The brief was straightforward. The ambition was not.
+            </p>
+
+            <p data-reveal data-delay="80">
+              Halfway through planning, we asked ourselves a question we couldn't
+              stop thinking about: why do so many students study hard and still walk
+              into exams underprepared? Not because they didn't work — but because
+              no tool ever told them <em>where</em> they stood, <em>what</em> gaps
+              remained, or <em>exactly</em> what to do next.
+            </p>
+
+            <p data-reveal data-delay="160">
+              We scrapped the minimal viable submission and decided to build the
+              real thing: a production-grade platform that takes a student's
+              performance data, forecasts their exam outcome with machine-learning
+              precision, and generates the roadmap they need to hit their target
+              score. Not an assignment. A product.
+            </p>
+          </div>
+
+          <div class="origin-meta" data-reveal data-delay="200">
+            <div class="origin-stat">
+              <span class="os-label">Founded</span>
+              <span class="os-val">Feb 2026</span>
+            </div>
+            <div class="origin-divider"></div>
+            <div class="origin-stat">
+              <span class="os-label">Team</span>
+              <span class="os-val">5 Engineers</span>
+            </div>
+            <div class="origin-divider"></div>
+            <div class="origin-stat">
+              <span class="os-label">Based at</span>
+              <span class="os-val">IIT Patna</span>
+            </div>
+            <div class="origin-divider"></div>
+            <div class="origin-stat">
+              <span class="os-label">Status</span>
+              <span class="os-val os-val--live">
+                <span class="live-dot"></span>
+                Live &amp; Building
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         3. THE JOURNEY — VERTICAL TIMELINE
+         Notion-style: dot + vertical line on left,
+         date + heading + body on right.
+    ════════════════════════════════════════════════════ -->
+    <section class="about-timeline">
+      <div class="container">
+
+        <div class="section-eyebrow">The journey</div>
+        <h2 class="section-heading">
+          From classroom idea<br />to live platform.
+        </h2>
+
+        <div class="timeline">
+
+          <!-- Milestone 1 -->
+          <div class="tl-item" data-reveal>
+            <div class="tl-left">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-right">
+              <span class="tl-date">February 2026 · Semester 2</span>
+              <h3 class="tl-heading">The Inception</h3>
+              <p class="tl-body">
+                Five CS students. One ambitious brief. And the realization
+                that the problem was far bigger than the assignment.
+              </p>
+              <p class="tl-body">
+                We spent the first weeks not writing code, but asking harder
+                questions. What data actually predicts exam success? How does
+                a personalized roadmap differ from a study schedule? The Python
+                AI models and training datasets we designed in this phase became
+                EduBuddy's core intelligence layer.
+              </p>
+              <div class="tl-tags">
+                <span class="tl-tag tl-tag--blue">Conceptualization</span>
+                <span class="tl-tag tl-tag--purple">AI Model Training</span>
+                <span class="tl-tag tl-tag--green">Dataset Gathering</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milestone 2 -->
+          <div class="tl-item" data-reveal data-delay="100">
+            <div class="tl-left">
+              <div class="tl-dot tl-dot--filled"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-right">
+              <span class="tl-date">April 2026 · V1 Launch</span>
+              <h3 class="tl-heading">The Assessment Engine Goes Live</h3>
+              <p class="tl-body">
+                The platform's defining feature ships: a structured quiz that
+                profiles a student's knowledge state across subjects, generates
+                a predicted exam score, and delivers a prioritized improvement roadmap.
+              </p>
+              <p class="tl-body">
+                Students get their first AI-forecasted outcome. For the first time,
+                "I don't know where I stand" stops being an acceptable answer.
+                The goal was never to replace studying — it was to make every
+                hour of studying count.
+              </p>
+              <div class="tl-tags">
+                <span class="tl-tag tl-tag--orange">Web Platform</span>
+                <span class="tl-tag tl-tag--blue">Forecasting Engine</span>
+                <span class="tl-tag tl-tag--green">Roadmap Generator</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milestone 3 -->
+          <div class="tl-item tl-item--last" data-reveal data-delay="200">
+            <div class="tl-left">
+              <div class="tl-dot tl-dot--horizon"></div>
+            </div>
+            <div class="tl-right">
+              <span class="tl-date">Semester 6 &amp; Beyond · The Horizon</span>
+              <h3 class="tl-heading">Scaling to an Enterprise SaaS</h3>
+              <p class="tl-body">
+                EduBuddy enters its next chapter: a fully integrated platform for
+                students, parents, and teachers — with role-based dashboards, weekly
+                AI insight reports, real-time coaching nudges, and an architecture
+                built to scale across every grade and exam type in India.
+              </p>
+              <p class="tl-body">
+                The same mission as day one. A far larger canvas.
+              </p>
+              <div class="tl-tags">
+                <span class="tl-tag tl-tag--purple">Multi-role Dashboards</span>
+                <span class="tl-tag tl-tag--blue">Enterprise Scale</span>
+                <span class="tl-tag tl-tag--orange">Continuous UX Evolution</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         4. OUR VALUES — 3-COLUMN GRID
+         Mirrors the features-grid border pattern from
+         style.css for visual consistency.
+    ════════════════════════════════════════════════════ -->
+    <section class="about-values">
+      <div class="container">
+
+        <div class="section-eyebrow">What we believe</div>
+        <h2 class="section-heading">
+          Three principles.<br />Every decision.
+        </h2>
+
+        <div class="values-grid">
+
+          <div class="value-card" data-reveal>
+            <div class="value-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="11" cy="11" r="4"   stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="11" cy="11" r="1.2" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="value-title">Predictability over Panic</h3>
+            <p class="value-body">
+              Exam anxiety is a data problem. We solve it by turning uncertainty
+              into measurable, actionable forecasts — so every student knows exactly
+              where they stand, long before the exam begins.
+            </p>
+          </div>
+
+          <div class="value-card" data-reveal data-delay="100">
+            <div class="value-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M4 18l5-7 3.5 3L16 8l2 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11 4v4M4 11h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="value-title">Actionable Intelligence</h3>
+            <p class="value-body">
+              An insight without a next step is just noise. Every prediction
+              EduBuddy generates comes paired with a precise, prioritized roadmap.
+              No ambiguity. No paralysis. Just clarity on what to do next.
+            </p>
+          </div>
+
+          <div class="value-card" data-reveal data-delay="200">
+            <div class="value-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 3L13.5 8.5L19.5 9.3L15.3 13.4L16.2 19.5L11 16.8L5.8 19.5L6.7 13.4L2.5 9.3L8.5 8.5L11 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="value-title">Premium Craftsmanship</h3>
+            <p class="value-body">
+              Students deserve tools as thoughtfully designed as the best
+              productivity software on the planet. We hold every detail —
+              spacing, typography, interaction — to the same standard as
+              products they pay a premium for.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         5. THE TEAM — CLEAN MINIMALIST GRID
+         5 members, colored avatar initials, name + role.
+    ════════════════════════════════════════════════════ -->
+    <section class="about-team">
+      <div class="container">
+
+        <div class="section-eyebrow">The builders</div>
+        <h2 class="section-heading">
+          Five engineers.<br />One shared conviction.
+        </h2>
+        <p class="section-body" style="margin-bottom: 52px;">
+          EduBuddy is built by people who believe that the gap between a
+          student's effort and their outcome is a solvable engineering problem.
+        </p>
+
+        <div class="team-grid">
+
+          <div class="team-card" data-reveal>
+            <div class="team-avatar" style="background: #3b82f6;">S</div>
+            <div class="team-info">
+              <span class="team-name">Sayeedul Haque</span>
+              <span class="team-role">Web Development &amp; Architecture</span>
+            </div>
+            <p class="team-bio">Architects the full-stack platform and owns the engineering infrastructure.</p>
+          </div>
+
+          <div class="team-card" data-reveal data-delay="60">
+            <div class="team-avatar" style="background: #10b981;">M</div>
+            <div class="team-info">
+              <span class="team-name">Md Huzaifa Ansari</span>
+              <span class="team-role">Core AI &amp; Data Modeling</span>
+            </div>
+            <p class="team-bio">Designs and trains the prediction models that power the EduBuddy forecasting engine.</p>
+          </div>
+
+          <div class="team-card" data-reveal data-delay="120">
+            <div class="team-avatar" style="background: #8b5cf6;">Z</div>
+            <div class="team-info">
+              <span class="team-name">Zahid Hassan</span>
+              <span class="team-role">Dashboard Engineering</span>
+            </div>
+            <p class="team-bio">Builds the student and teacher dashboards — translating complex data into clear, actionable views.</p>
+          </div>
+
+          <div class="team-card" data-reveal data-delay="180">
+            <div class="team-avatar" style="background: #f43f5e;">K</div>
+            <div class="team-info">
+              <span class="team-name">Kriti Harsh</span>
+              <span class="team-role">Dashboard Engineering</span>
+            </div>
+            <p class="team-bio">Crafts the parent-facing experience and ensures every insight lands clearly across all user roles.</p>
+          </div>
+
+          <div class="team-card" data-reveal data-delay="240">
+            <div class="team-avatar" style="background: #f59e0b;">T</div>
+            <div class="team-info">
+              <span class="team-name">Thakur Harjas Singh</span>
+              <span class="team-role">Growth &amp; Scaling</span>
+            </div>
+            <p class="team-bio">Leads platform growth strategy and drives EduBuddy's expansion across India's education ecosystem.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         6. CTA STRIP — bottom of about page
+         Light-mode, minimal, links back to index.html
+    ════════════════════════════════════════════════════ -->
+    <section class="about-cta-strip">
+      <div class="container">
+        <div class="about-cta-inner" data-reveal>
+          <div class="about-cta-text">
+            <h2 class="about-cta-heading">
+              Ready to eliminate exam unpredictability?
+            </h2>
+            <p class="about-cta-sub">
+              Join students across India who study with a plan, not a guess.
+            </p>
+          </div>
+          <div class="about-cta-actions">
+            <a href="index.html" class="btn-solid btn-lg">Try EduBuddy free</a>
+            <a href="index.html#features" class="btn-outline btn-lg">See how it works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER — identical to index.html.
+       Cross-page hrefs use index.html#section pattern.
+       Placeholder links use href="#" (smooth scroll
+       in script.js exits early for bare "#" hrefs).
+  ════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="EduBuddy" class="logo-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <span class="logo-wordmark" style="display:none">EduBuddy</span>
+          </a>
+          <p>AI-powered learning for students, parents, and teachers. Built in India.</p>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how-it-works">How it works</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="index.html#changelog">Changelog</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="about.html">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h5>Legal</h5>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 EduBuddy. All rights reserved.</span>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       AUTH MODAL — exact copy from index.html.
+       script.js finds these IDs and manages auth state.
+  ════════════════════════════════════════════════════ -->
+  <div class="auth-overlay" id="auth-modal" aria-hidden="true">
+    <div class="auth-card dark-mode-card">
+      <button class="auth-close" id="auth-close" aria-label="Close">&times;</button>
+
+      <div class="auth-header">
+        <h2 id="auth-modal-title">Welcome back</h2>
+        <p id="auth-modal-sub">Log in to continue your learning journey.</p>
+      </div>
+
+      <div class="auth-body">
+        <div class="input-group">
+          <label for="auth-email">Email</label>
+          <input type="email" id="auth-email" placeholder="you@example.com" />
+        </div>
+
+        <div class="input-group">
+          <div class="label-row">
+            <label for="auth-password">Password</label>
+            <a href="#" class="forgot-link" id="auth-forgot-link">Forgot Password?</a>
+          </div>
+          <input type="password" id="auth-password" placeholder="••••••••" />
+        </div>
+
+        <button class="btn-solid btn-full" id="auth-main-btn">SIGN IN</button>
+
+        <div class="auth-divider">
+          <span>OR SIGN IN WITH SOCIALS</span>
+        </div>
+
+        <button class="btn-outline btn-full btn-google dark-mode-google" id="google-auth-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          GOOGLE
+        </button>
+
+        <p class="auth-toggle">
+          <span id="auth-toggle-text">Don't have an account?</span>
+          <a href="#" id="auth-toggle-link">SIGN UP</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# EduBuddy Backend — Python dependencies
+# Install with: pip install -r requirements.txt
+
+# Web framework
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+
+# Firebase Admin SDK
+firebase-admin==6.5.0
+
+# ML pipeline (must match what was used to train the model)
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.4.2
+xgboost==2.0.3
+joblib==1.4.0
+shap==0.45.0
+
+# Data validation
+pydantic==2.7.1
+
+# Environment variable loading (local dev)
+python-dotenv==1.0.1

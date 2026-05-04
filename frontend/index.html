@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduBuddy — Personalized Learning for Every Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ 
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="#" class="nav-logo">
+        <img src="assets/logo.png" alt="EduBuddy"
+             class="logo-img"
+             onerror="this.style.display='none';document.querySelector('.logo-wordmark').style.display='block'" />
+        <span class="logo-wordmark">EduBuddy</span>
+      </a>
+ 
+      <ul class="nav-links" role="list">
+        <li><a href="#product">Product</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#for-whom">For whom</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+ 
+      <div class="nav-cta">
+        <span id="nav-user-greeting" class="nav-greeting" style="display: none;"></span>
+        <a href="#" class="btn-text" id="nav-login-btn">Log in</a>
+        <a href="#" class="btn-solid" id="nav-signup-btn">Get EduBuddy free</a>
+      </div>
+ 
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+          <rect y="0"  width="20" height="2" rx="1" fill="currentColor"/>
+          <rect y="6"  width="20" height="2" rx="1" fill="currentColor"/>
+          <rect y="12" width="20" height="2" rx="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+ 
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+      <a href="#product">Product</a>
+      <a href="#features">Features</a>
+      <a href="#for-whom">For whom</a>
+      <a href="#pricing">Pricing</a>
+      <hr />
+      <a href="#" id="drawer-login-btn">Log in</a>
+      <a href="#" class="drawer-cta" id="drawer-signup-btn">Get EduBuddy free →</a>
+    </div>
+  </header>
+ 
+  <main>
+ 
+    <section class="hero" id="product">
+      
+      <div class="hero-glow"></div>
+ 
+      <div class="hero-inner container">
+ 
+        <div class="hero-label">
+          <span class="label-dot"></span>
+          <span>AI-powered education platform</span>
+        </div>
+ 
+        <h1 class="hero-heading">
+          The smarter way<br />
+          <em>students</em> learn.
+        </h1>
+ 
+        <p class="hero-body">
+          EduBuddy analyzes each student's habits and performance,
+          then builds a personalized plan to help them study less and achieve more.
+          For students, parents, and teachers.
+        </p>
+ 
+        <div class="hero-actions">
+          <a href="#" class="btn-solid btn-lg" id="hero-signup-btn">Get started free</a>
+          <a href="#how-it-works" class="btn-outline btn-lg">See how it works</a>
+        </div>
+ 
+        <p class="hero-footnote">Free forever · No credit card required</p>
+      </div>
+ 
+      <div class="preview-wrap container" id="preview-wrap">
+        <div class="browser-chrome">
+          <div class="chrome-bar">
+            <div class="chrome-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="chrome-address">app.edubuddy.in/dashboard</div>
+            <div class="chrome-actions">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#c0bfbc" stroke-width="1.2"/><path d="M4.5 7h5M7 4.5v5" stroke="#c0bfbc" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+ 
+          <div class="app-preview">
+ 
+            <aside class="app-sidebar">
+              <div class="sidebar-user">
+                <div class="user-avatar">A</div>
+                <div class="user-info">
+                  <span class="user-name">Aanya Sharma</span>
+                  <span class="user-grade">Grade 12 · Science</span>
+                </div>
+              </div>
+              <nav class="sidebar-nav">
+                <a class="snav-item active">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="currentColor"/><rect x="8" y="1" width="5" height="5" rx="1" fill="currentColor" opacity=".4"/><rect x="1" y="8" width="5" height="5" rx="1" fill="currentColor" opacity=".4"/><rect x="8" y="8" width="5" height="5" rx="1" fill="currentColor" opacity=".4"/></svg>
+                  Dashboard
+                </a>
+                <a class="snav-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3h10M2 7h7M2 11h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  Study Plan
+                </a>
+                <a class="snav-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11L5 7l2.5 2.5L10 5l2 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Progress
+                </a>
+                <a class="snav-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v3l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  Sessions
+                </a>
+              </nav>
+            </aside>
+ 
+            <div class="app-main">
+              <div class="app-topbar">
+                <div>
+                  <h2 class="app-page-title">Good morning, Aanya ☀️</h2>
+                  <p class="app-page-sub">3 subjects scheduled · Your weekly streak: 14 days</p>
+                </div>
+                <div class="ai-score-chip">
+                  <span class="chip-label">AI Score</span>
+                  <span class="chip-val">87</span>
+                </div>
+              </div>
+ 
+              <div class="plan-section">
+                <div class="plan-header">
+                  <span class="plan-title">Today's plan</span>
+                  <span class="plan-date">Thursday, March 26</span>
+                </div>
+                <div class="plan-items">
+                  <div class="plan-item done">
+                    <div class="pi-check done">
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="pi-info">
+                      <span class="pi-subject">Mathematics</span>
+                      <span class="pi-topic">Integration by parts · 45 min</span>
+                    </div>
+                    <span class="pi-tag tag-done">Done</span>
+                  </div>
+                  <div class="plan-item active-item">
+                    <div class="pi-check current"></div>
+                    <div class="pi-info">
+                      <span class="pi-subject">Physics</span>
+                      <span class="pi-topic">Wave optics · 60 min</span>
+                    </div>
+                    <span class="pi-tag tag-now">Now</span>
+                  </div>
+                  <div class="plan-item">
+                    <div class="pi-check upcoming"></div>
+                    <div class="pi-info">
+                      <span class="pi-subject">Chemistry</span>
+                      <span class="pi-topic">Electrochemistry · 45 min</span>
+                    </div>
+                    <span class="pi-tag tag-later">5:00 PM</span>
+                  </div>
+                </div>
+              </div>
+ 
+              <div class="progress-row">
+                <div class="prog-card">
+                  <span class="prog-card-label">Mathematics</span>
+                  <div class="prog-bar-wrap">
+                    <div class="prog-bar-track">
+                      <div class="prog-bar-fill" style="width: 82%"></div>
+                    </div>
+                    <span class="prog-pct">82%</span>
+                  </div>
+                </div>
+                <div class="prog-card">
+                  <span class="prog-card-label">Physics</span>
+                  <div class="prog-bar-wrap">
+                    <div class="prog-bar-track">
+                      <div class="prog-bar-fill blue" style="width: 68%"></div>
+                    </div>
+                    <span class="prog-pct">68%</span>
+                  </div>
+                </div>
+                <div class="prog-card">
+                  <span class="prog-card-label">Chemistry</span>
+                  <div class="prog-bar-wrap">
+                    <div class="prog-bar-track">
+                      <div class="prog-bar-fill green" style="width: 74%"></div>
+                    </div>
+                    <span class="prog-pct">74%</span>
+                  </div>
+                </div>
+              </div>
+ 
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <section class="social-proof">
+      <div class="container">
+        <p class="proof-label">Used by students, parents, and teachers across India</p>
+        <div class="proof-logos">
+          <span class="proof-org">Delhi University</span>
+          <span class="proof-sep">·</span>
+          <span class="proof-org">CBSE Network</span>
+          <span class="proof-sep">·</span>
+          <span class="proof-org">IIT JEE Prep</span>
+          <span class="proof-sep">·</span>
+          <span class="proof-org">NCERT Partners</span>
+          <span class="proof-sep">·</span>
+          <span class="proof-org">50,000+ learners</span>
+        </div>
+      </div>
+    </section>
+ 
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-eyebrow">Platform capabilities</div>
+        <h2 class="section-heading">
+          Everything a student needs<br />to reach their potential.
+        </h2>
+ 
+        <div class="features-grid">
+ 
+          <article class="feat-card feat-large" data-reveal>
+            <div class="feat-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M11 7v4l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Smart Assessment</h3>
+            <p>Answer a short onboarding questionnaire. EduBuddy's AI maps your learning style, strengths, and gaps to generate your personal success score.</p>
+            <div class="feat-detail">
+              <div class="score-display">
+                <div class="score-circle">
+                  <svg viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="28" stroke="#e9e8e3" stroke-width="4" fill="none"/>
+                    <circle cx="32" cy="32" r="28" stroke="#2563eb" stroke-width="4" fill="none"
+                            stroke-dasharray="176" stroke-dashoffset="23"
+                            stroke-linecap="round" transform="rotate(-90 32 32)"/>
+                  </svg>
+                  <span>87</span>
+                </div>
+                <div class="score-labels">
+                  <span class="score-main">Your AI Score</span>
+                  <span class="score-sub">Top 12% of students</span>
+                </div>
+              </div>
+            </div>
+          </article>
+ 
+          <article class="feat-card" data-reveal data-delay="100">
+            <div class="feat-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M4 6h14M4 11h9M4 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Personalized Study Plans</h3>
+            <p>Daily AI-generated plans adapted to your exam schedule, pace, and weak spots. Updated every morning based on the previous day.</p>
+          </article>
+ 
+          <article class="feat-card" data-reveal data-delay="200">
+            <div class="feat-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M3 16l5-6 4 4 4-7 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Progress Tracking</h3>
+            <p>Monitor subject-level improvement over time. Weekly insights surface patterns so students and parents can take action early.</p>
+          </article>
+ 
+          <article class="feat-card" data-reveal data-delay="300">
+            <div class="feat-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="8"  cy="8"  r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="14" cy="14" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M11 8h2a3 3 0 0 1 0 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Role-Based Dashboards</h3>
+            <p>Students, parents, and teachers each see what matters to them. One platform, three perspectives, always in sync.</p>
+          </article>
+ 
+          <article class="feat-card" data-reveal data-delay="150">
+            <div class="feat-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 3L13.5 8.5L19.5 9.3L15.3 13.4L16.2 19.5L11 16.8L5.8 19.5L6.7 13.4L2.5 9.3L8.5 8.5L11 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>AI Recommendations</h3>
+            <p>Get nudges about what to study next, when to take a break, and how to adjust before upcoming tests — all from the AI engine.</p>
+          </article>
+ 
+          <article class="feat-card feat-highlight" data-reveal data-delay="250">
+            <div class="feat-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="3" y="3" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M7 11l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Parent Transparency</h3>
+            <p>Parents receive weekly digest reports — no app login needed. Know exactly where your child is struggling and improving.</p>
+          </article>
+ 
+        </div>
+      </div>
+    </section>
+ 
+    <section class="how" id="how-it-works">
+      <div class="container">
+        <div class="how-inner">
+          <div class="how-text">
+            <div class="section-eyebrow">How it works</div>
+            <h2 class="section-heading" style="max-width: 400px">
+              From sign-up to a smarter study routine.
+            </h2>
+            <p class="section-body">
+              EduBuddy gets you up and running in minutes. No lengthy setup. No
+              complex configuration. Just answer a few questions and your
+              AI-powered learning plan is ready.
+            </p>
+          </div>
+ 
+          <div class="steps-list">
+            <div class="step" data-reveal>
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>Create your account</h4>
+                <p>Sign up with your email or Google account. Takes under 60 seconds. No credit card required.</p>
+              </div>
+            </div>
+            <div class="step" data-reveal data-delay="100">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>Complete the onboarding</h4>
+                <p>Answer 10 questions about your subjects, schedule, and goals. The AI builds your learning profile.</p>
+              </div>
+            </div>
+            <div class="step" data-reveal data-delay="200">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>Receive your AI score and plan</h4>
+                <p>Your personalized success score and daily study roadmap are generated instantly.</p>
+              </div>
+            </div>
+            <div class="step" data-reveal data-delay="300">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>Track and improve daily</h4>
+                <p>Follow your plan, log your sessions, and watch the analytics refine your path over time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <section class="for-whom" id="for-whom">
+      <div class="container">
+        <div class="section-eyebrow">Built for everyone in the classroom</div>
+        <h2 class="section-heading">
+          One platform.<br />Three perspectives.
+        </h2>
+ 
+        <div class="roles-grid">
+          <div class="role-card" data-reveal>
+            <div class="role-icon student-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="10" r="4.5" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M5 23c0-4.97 4.03-9 9-9s9 4.03 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>For Students</h3>
+            <p>Understand exactly what to study and when. Stop guessing and start following a plan built around your goals, pace, and exam dates.</p>
+            <ul class="role-list">
+              <li>Personalized daily study plan</li>
+              <li>AI success score with insights</li>
+              <li>Subject-level progress tracking</li>
+              <li>Streak and milestone rewards</li>
+            </ul>
+          </div>
+ 
+          <div class="role-card role-featured" data-reveal data-delay="120">
+            <div class="role-icon parent-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle cx="10" cy="9"  r="3.5" stroke="currentColor" stroke-width="1.7"/>
+                <circle cx="18" cy="9"  r="3.5" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M3 22c0-3.87 3.13-7 7-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M18 15a7 7 0 0 1 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>For Parents</h3>
+            <p>Stay informed without hovering. Receive a clear weekly summary of your child's progress, strengths, and where they need support.</p>
+            <ul class="role-list">
+              <li>Weekly email digest report</li>
+              <li>Early warning on weak subjects</li>
+              <li>Study time and consistency data</li>
+              <li>Direct messaging with teacher</li>
+            </ul>
+          </div>
+ 
+          <div class="role-card" data-reveal data-delay="240">
+            <div class="role-icon teacher-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect x="4" y="5"  width="20" height="14" rx="2.5" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M10 23h8M14 19v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M9 11l3 3 7-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>For Teachers</h3>
+            <p>Monitor your entire class from a single view. Identify at-risk students early and see which topics need more classroom attention.</p>
+            <ul class="role-list">
+              <li>Class-wide performance overview</li>
+              <li>At-risk student alerts</li>
+              <li>Topic mastery heat maps</li>
+              <li>Assignment tracking and feedback</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <section class="testimonial-section">
+      <div class="container">
+        <div class="testimonials-row">
+ 
+          <blockquote class="testimonial" data-reveal>
+            <p>"EduBuddy showed me exactly which chapters were hurting my score. I went from 61 to 88 in Math in six weeks. Nothing else I tried worked this fast."</p>
+            <footer>
+              <div class="t-avatar av-blue">A</div>
+              <div>
+                <cite>Aanya Sharma</cite>
+                <span>Class 12 Student · Delhi</span>
+              </div>
+            </footer>
+          </blockquote>
+ 
+          <blockquote class="testimonial" data-reveal data-delay="120">
+            <p>"As a parent I was always in the dark. EduBuddy's weekly report gives me everything I need in five minutes. I finally know how to actually help my son."</p>
+            <footer>
+              <div class="t-avatar av-green">R</div>
+              <div>
+                <cite>Rajesh Verma</cite>
+                <span>Parent · Mumbai</span>
+              </div>
+            </footer>
+          </blockquote>
+ 
+          <blockquote class="testimonial" data-reveal data-delay="240">
+            <p>"The class overview saves me hours every week. I can see which students need attention before they fall behind — not after. That's a game changer for teaching."</p>
+            <footer>
+              <div class="t-avatar av-orange">P</div>
+              <div>
+                <cite>Priya Menon</cite>
+                <span>Science Teacher · Bangalore</span>
+              </div>
+            </footer>
+          </blockquote>
+ 
+        </div>
+      </div>
+    </section>
+ 
+    <section class="changelog-section" id="changelog">
+      <div class="container cl-container">
+ 
+        <div class="cl-header" data-reveal>
+          <span class="cl-eyebrow">WHAT'S NEW</span>
+          <h2 class="cl-title">Changelog</h2>
+          <p class="cl-subtitle">From a college capstone to a full SaaS product — every milestone, documented.</p>
+        </div>
+ 
+        <div class="changelog-list">
+ 
+          <div class="changelog-entry" data-reveal>
+            <div class="changelog-meta">
+              <span class="changelog-version">v1.0</span>
+              <span class="changelog-date">April 2026 ↗️</span>
+            </div>
+            <div class="changelog-body">
+              <h4>V1 Web Launch 🚀</h4>
+              <p>Our first official web release. The core assessment engine goes live — asking students a targeted series of questions, predicting their exam performance, and delivering a personalized, AI-generated list of improvement suggestions.</p>
+              <ul class="changelog-tags">
+                <li class="tag-launch">LAUNCH</li>
+              </ul>
+            </div>
+          </div>
+ 
+          <div class="changelog-entry" data-reveal data-delay="80">
+            <div class="changelog-meta">
+              <span class="changelog-version">v0.3</span>
+              <span class="changelog-date">March 2026</span>
+            </div>
+            <div class="changelog-body">
+              <h4>Authentication &amp; Premium UI ✦</h4>
+              <p>Completely rebuilt the landing page around a premium, Notion-inspired architecture. Shipped a custom dark-mode frosted-glass modal and integrated Firebase Authentication — supporting secure Google OAuth and Email/Password sign-ins, complete with live form typography.</p>
+              <ul class="changelog-tags">
+                <li class="tag-new">NEW</li>
+                <li class="tag-improvement">IMPROVED</li>
+              </ul>
+            </div>
+          </div>
+ 
+          <div class="changelog-entry" data-reveal data-delay="160">
+            <div class="changelog-meta">
+              <span class="changelog-version">v0.2</span>
+              <span class="changelog-date">Late Feb 2026</span>
+            </div>
+            <div class="changelog-body">
+              <h4>AI Model Training</h4>
+              <p>The core AI development phase. We gathered real student datasets and trained our Python models to accurately analyze performance metrics and produce reliable, data-driven study plans — the intelligence layer that powers everything EduBuddy does.</p>
+              <ul class="changelog-tags">
+                <li class="tag-new">NEW</li>
+              </ul>
+            </div>
+          </div>
+ 
+          <div class="changelog-entry" data-reveal data-delay="240">
+            <div class="changelog-meta">
+              <span class="changelog-version">v0.1</span>
+              <span class="changelog-date">Early Feb 2026</span>
+            </div>
+            <div class="changelog-body">
+              <h4>Semester 2 Project Inception 🎓</h4>
+              <p>EduBuddy was born as a capstone project at IIT Patna — five friends, one mission. From day one, the goal was never just to ship a college assignment, but to build the foundation of a complete, advanced EdTech SaaS product we'd continue scaling all the way through Semester 6.</p>
+              <ul class="changelog-tags">
+                <li class="tag-launch">LAUNCH</li>
+              </ul>
+            </div>
+          </div>
+ 
+        </div>
+      </div>
+    </section>
+ 
+    <section class="cta-section" id="pricing">
+      <div class="container">
+        <div class="cta-box" data-reveal>
+          <div class="cta-content">
+            <h2 class="cta-heading">
+              Start learning smarter<br />
+              <em>today.</em>
+            </h2>
+            <p class="cta-body">
+              EduBuddy is free to get started. Set up your profile in under five
+              minutes and see your personalized study plan immediately.
+            </p>
+            <div class="cta-actions">
+              <a href="#" class="btn-solid btn-lg" id="cta-signup-btn">Create your free account</a>
+              <a href="#" class="btn-text-dark" id="cta-login-btn">Already have an account? Log in →</a>
+            </div>
+            <p class="cta-footnote">Free plan · No credit card · Works on all devices</p>
+          </div>
+          <div class="cta-visual">
+            <div class="cta-card">
+              <div class="cta-card-row">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2.5" stroke="#2563eb" stroke-width="1.5"/><path d="M4.5 8l2.5 2.5 4-4" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Your study plan is ready</span>
+              </div>
+              <div class="cta-card-row">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#2563eb" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span>3 sessions planned for today</span>
+              </div>
+              <div class="cta-card-row">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12L5 8l3 3 3-5 3 3" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>AI Score: 87 · +4 this week</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <img src="assets/logo.png" alt="EduBuddy" class="logo-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <span class="logo-wordmark" style="display:none">EduBuddy</span>
+          </a>
+          <p>AI-powered learning for students, parents, and teachers. Built in India.</p>
+        </div>
+ 
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#changelog">Changelog</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="about.html">About</a>
+            <a href="#blog">Blog</a>
+            <a href="#careers">Careers</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h5>Legal</h5>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#cookies">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="footer-bottom">
+        <span>©️ 2026 EduBuddy. All rights reserved.</span>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+ 
+  <div class="auth-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title" aria-hidden="true">
+    <div class="auth-card dark-mode-card">
+      <button class="auth-close" id="auth-close" aria-label="Close">&times;</button>
+      
+      <div class="auth-header">
+        <h2 id="auth-modal-title">Welcome back</h2>
+        <p id="auth-modal-sub">Log in to continue your learning journey.</p>
+      </div>
+ 
+      <div class="auth-body">
+        <div class="input-group">
+          <label for="auth-email">Email</label>
+          <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+ 
+        <div class="input-group">
+          <div class="label-row">
+            <label for="auth-password">Password</label>
+            <a href="#" class="forgot-link" id="auth-forgot-link">Forgot Password?</a>
+          </div>
+          <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+ 
+        <div class="auth-error" id="auth-error" role="alert" style="display:none;"></div>
+ 
+        <button class="btn-solid btn-full" id="auth-main-btn">SIGN IN</button>
+ 
+        <div class="auth-divider">
+          <span>OR SIGN IN WITH SOCIALS</span>
+        </div>
+ 
+        <button class="btn-outline btn-full btn-google dark-mode-google" id="google-auth-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          GOOGLE
+        </button>
+ 
+        <p class="auth-toggle">
+          <span id="auth-toggle-text">Don't have an account?</span>
+          <a href="#" id="auth-toggle-link">SIGN UP</a>
+        </p>
+      </div>
+    </div>
+  </div>
+ 
+  <script type="module" src="script.js"></script>
+  <!-- ═══════════════════════════════════════════════════════════════
+     ONBOARDING WIZARD MODAL
+     Insert this entire block directly before </body> in index.html.
+     Place it AFTER the existing auth-modal div.
+═══════════════════════════════════════════════════════════════ -->
+ 
+<div class="onboarding-overlay" id="onboarding-modal"
+     role="dialog" aria-modal="true"
+     aria-labelledby="ob-title" aria-hidden="true">
+ 
+  <div class="onboarding-card" id="onboarding-card">
+ 
+    <!-- ── Progress bar ───────────────────────────────────── -->
+    <div class="ob-topbar">
+      <span class="ob-step-label" id="ob-step-label">Step 1 of 4</span>
+      <div class="ob-progress-track">
+        <div class="ob-progress-fill" id="ob-progress-fill" style="width: 25%;"></div>
+      </div>
+      <div class="ob-step-dots">
+        <span class="ob-dot active" data-dot="1"></span>
+        <span class="ob-dot"        data-dot="2"></span>
+        <span class="ob-dot"        data-dot="3"></span>
+        <span class="ob-dot"        data-dot="4"></span>
+      </div>
+    </div>
+ 
+    <!-- ── Step panels ────────────────────────────────────── -->
+    <div class="ob-body">
+ 
+      <!-- ─────────────────────────────────────────────────────
+           STEP 1 — About You
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step active" data-step="1">
+ 
+        <div class="ob-step-header">
+          <h2 id="ob-title">Tell us about yourself</h2>
+          <p>A few quick basics to set up your learning profile.</p>
+        </div>
+ 
+        <div class="ob-form-error" id="ob-error-1" role="alert"></div>
+ 
+        <!-- Preferred name -->
+        <div class="ob-field">
+          <label for="ob-name">Preferred name</label>
+          <input class="ob-input" type="text" id="ob-name"
+                 placeholder="e.g. Alex" autocomplete="given-name" />
+          <div class="ob-field-error" id="ob-err-name">
+            Please enter your preferred name.
+          </div>
+        </div>
+ 
+        <!-- Gender -->
+        <div class="ob-field">
+          <label>Gender</label>
+          <div class="ob-radio-group grid-2" id="ob-gender-group">
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-m" value="M" />
+              <label for="ob-gender-m">
+                <span class="ob-radio-mark"></span>Male
+              </label>
+            </div>
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-f" value="F" />
+              <label for="ob-gender-f">
+                <span class="ob-radio-mark"></span>Female
+              </label>
+            </div>
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-nb" value="N" />
+              <label for="ob-gender-nb">
+                <span class="ob-radio-mark"></span>Non-binary
+              </label>
+            </div>
+            <div class="ob-radio-btn">
+              <input type="radio" name="ob-gender" id="ob-gender-x" value="X" />
+              <label for="ob-gender-x">
+                <span class="ob-radio-mark"></span>Prefer not to say
+              </label>
+            </div>
+          </div>
+          <div class="ob-field-error" id="ob-err-gender">
+            Please select a gender option.
+          </div>
+        </div>
+ 
+        <!-- Age band -->
+        <div class="ob-field">
+          <label for="ob-age-band">Age band</label>
+          <select class="ob-select" id="ob-age-band">
+            <option value="" disabled selected>Select your age range</option>
+            <option value="0-35">Under 35</option>
+            <option value="35-55">35–55</option>
+            <option value="55<=">55 or older</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-age-band">
+            Please select your age band.
+          </div>
+        </div>
+ 
+        <!-- Student type -->
+        <div class="ob-field">
+          <label for="ob-student-type">Academic level</label>
+          <select class="ob-select" id="ob-student-type">
+            <option value="" disabled selected>Select your level</option>
+            <option value="undergraduate">Undergraduate</option>
+            <option value="postgraduate">Postgraduate / Masters</option>
+            <option value="doctoral">Doctoral / PhD</option>
+            <option value="professional">Professional / CPD</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-student-type">
+            Please select your academic level.
+          </div>
+        </div>
+ 
+        <div class="ob-footer">
+          <div></div>
+          <button class="ob-btn-next" id="ob-next-1" type="button">
+            Continue
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+ 
+      </div><!-- /step 1 -->
+ 
+ 
+      <!-- ─────────────────────────────────────────────────────
+           STEP 2 — Module Details
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step" data-step="2">
+ 
+        <div class="ob-step-header">
+          <h2>Your module details</h2>
+          <p>Which course are you studying and at what level?</p>
+        </div>
+ 
+        <div class="ob-form-error" id="ob-error-2" role="alert"></div>
+ 
+        <!-- Highest education -->
+        <div class="ob-field">
+          <label for="ob-highest-edu">Highest education level</label>
+          <select class="ob-select" id="ob-highest-edu">
+            <option value="" disabled selected>Select your highest qualification</option>
+            <option value="No Formal quals">No formal qualifications</option>
+            <option value="Lower Than A Level">Below A-Level / GCSE</option>
+            <option value="A Level or Equivalent">A Level or equivalent</option>
+            <option value="HE Qualification">Higher Education Qualification</option>
+            <option value="Post Graduate Qualification">Postgraduate Qualification</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-highest-edu">
+            Please select your education level.
+          </div>
+        </div>
+ 
+        <!-- Module code + Presentation code (side by side) -->
+        <div class="ob-row">
+          <div class="ob-field">
+            <label for="ob-code-module">Module code</label>
+            <select class="ob-select" id="ob-code-module">
+              <option value="" disabled selected>Select</option>
+              <option value="AAA">AAA</option>
+              <option value="BBB">BBB</option>
+              <option value="CCC">CCC</option>
+              <option value="DDD">DDD</option>
+              <option value="EEE">EEE</option>
+              <option value="FFF">FFF</option>
+              <option value="GGG">GGG</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-code-module">Required.</div>
+          </div>
+          <div class="ob-field">
+            <label for="ob-code-pres">Presentation / term</label>
+            <select class="ob-select" id="ob-code-pres">
+              <option value="" disabled selected>Select</option>
+              <option value="2013B">2013B</option>
+              <option value="2013J">2013J</option>
+              <option value="2014B">2014B</option>
+              <option value="2014J">2014J</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-code-pres">Required.</div>
+          </div>
+        </div>
+ 
+        <!-- Studied credits -->
+        <div class="ob-field">
+          <label for="ob-studied-credits">Studied credits (workload)</label>
+          <select class="ob-select" id="ob-studied-credits">
+            <option value="" disabled selected>Select your credit load</option>
+            <option value="30">30 credits</option>
+            <option value="60">60 credits</option>
+            <option value="120">120 credits</option>
+            <option value="150">150 credits</option>
+            <option value="180">180 credits</option>
+            <option value="240">240 credits</option>
+            <option value="270">270 credits</option>
+          </select>
+          <div class="ob-field-error" id="ob-err-studied-credits">
+            Please select your workload.
+          </div>
+        </div>
+ 
+        <div class="ob-footer">
+          <button class="ob-btn-back" id="ob-back-2" type="button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M11 7H3M6.5 3.5L3 7l3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </button>
+          <button class="ob-btn-next" id="ob-next-2" type="button">
+            Continue
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+ 
+      </div><!-- /step 2 -->
+ 
+ 
+      <!-- ─────────────────────────────────────────────────────
+           STEP 3 — Study Context
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step" data-step="3">
+ 
+        <div class="ob-step-header">
+          <h2>Study context</h2>
+          <p>Background details that help us calibrate your AI plan.</p>
+        </div>
+ 
+        <div class="ob-form-error" id="ob-error-3" role="alert"></div>
+ 
+        <!-- Region + IMD band -->
+        <div class="ob-row">
+          <div class="ob-field">
+            <label for="ob-region">Region</label>
+            <select class="ob-select" id="ob-region">
+              <option value="" disabled selected>Select</option>
+              <option value="East Anglian Region">East Anglian</option>
+              <option value="East Midlands Region">East Midlands</option>
+              <option value="Ireland">Ireland</option>
+              <option value="London Region">London</option>
+              <option value="North Region">North</option>
+              <option value="North Western Region">North Western</option>
+              <option value="Scotland">Scotland</option>
+              <option value="South East Region">South East</option>
+              <option value="South Region">South</option>
+              <option value="South West Region">South West</option>
+              <option value="Wales">Wales</option>
+              <option value="West Midlands Region">West Midlands</option>
+              <option value="Yorkshire Region">Yorkshire</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-region">
+              Please select a region.
+            </div>
+          </div>
+          <div class="ob-field">
+            <label for="ob-imd-band">Socioeconomic band</label>
+            <select class="ob-select" id="ob-imd-band">
+              <option value="" disabled selected>IMD band</option>
+              <option value="0-10%">0–10%</option>
+              <option value="10-20">10–20%</option>
+              <option value="20-30%">20–30%</option>
+              <option value="30-40%">30–40%</option>
+              <option value="40-50%">40–50%</option>
+              <option value="50-60%">50–60%</option>
+              <option value="60-70%">60–70%</option>
+              <option value="70-80%">70–80%</option>
+              <option value="80-90%">80–90%</option>
+              <option value="90-100%">90–100%</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-imd-band">
+              Please select a band.
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Previous attempts + Module length -->
+        <div class="ob-row">
+          <div class="ob-field">
+            <label for="ob-prev-attempts">Previous attempts</label>
+            <select class="ob-select" id="ob-prev-attempts">
+              <option value="" disabled selected>How many?</option>
+              <option value="0">0 — First attempt</option>
+              <option value="1">1 previous attempt</option>
+              <option value="2">2 previous attempts</option>
+              <option value="3">3 or more</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-prev-attempts">
+              Please select.
+            </div>
+          </div>
+          <div class="ob-field">
+            <label for="ob-mod-length">Module length (days)</label>
+            <select class="ob-select" id="ob-mod-length">
+              <option value="" disabled selected>Duration</option>
+              <option value="240">240 days</option>
+              <option value="269">269 days</option>
+            </select>
+            <div class="ob-field-error" id="ob-err-mod-length">
+              Please select.
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Disability (optional) -->
+        <div class="ob-field">
+          <label for="ob-disability">
+            Accessibility / disability support
+            <span class="ob-optional">(optional)</span>
+          </label>
+          <select class="ob-select" id="ob-disability">
+            <option value="" selected>Prefer not to say</option>
+            <option value="Y">Yes — I use accessibility support</option>
+            <option value="N">No — I do not require support</option>
+          </select>
+        </div>
+ 
+        <!-- Weekly study availability (optional) -->
+        <div class="ob-field">
+          <label for="ob-weekly-hours">
+            Weekly study availability
+            <span class="ob-optional">(optional)</span>
+          </label>
+          <select class="ob-select" id="ob-weekly-hours">
+            <option value="" selected>Choose an estimate</option>
+            <option value="under5">Less than 5 hours / week</option>
+            <option value="5-10">5–10 hours / week</option>
+            <option value="10-20">10–20 hours / week</option>
+            <option value="20+">More than 20 hours / week</option>
+          </select>
+        </div>
+ 
+        <div class="ob-footer">
+          <button class="ob-btn-back" id="ob-back-3" type="button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M11 7H3M6.5 3.5L3 7l3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </button>
+          <button class="ob-btn-next" id="ob-next-3" type="button">
+            Review
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+ 
+      </div><!-- /step 3 -->
+ 
+ 
+      <!-- ─────────────────────────────────────────────────────
+           STEP 4 — Review + Submit
+      ───────────────────────────────────────────────────────── -->
+      <div class="ob-step" data-step="4">
+ 
+        <div class="ob-step-header">
+          <h2>Review your profile</h2>
+          <p>Everything look right? You can go back to edit anything.</p>
+        </div>
+ 
+        <div class="ob-form-error" id="ob-error-4" role="alert"></div>
+ 
+        <!-- Review grid is populated dynamically by onboarding.js -->
+        <div class="ob-review-grid" id="ob-review-grid"></div>
+ 
+        <div class="ob-footer">
+          <button class="ob-btn-back" id="ob-back-4" type="button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M11 7H3M6.5 3.5L3 7l3.5 3.5" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </button>
+          <button class="ob-btn-submit" id="ob-submit-btn" type="button">
+            <span class="ob-spinner" id="ob-spinner"></span>
+            Submit Profile
+          </button>
+        </div>
+ 
+      </div><!-- /step 4 -->
+ 
+    </div><!-- /ob-body -->
+ 
+    <!-- ── Success state (shown in place of ob-body) ──────── -->
+    <div class="ob-success" id="ob-success" aria-live="polite">
+      <div class="ob-success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 13l4 4L19 7" stroke="#60a5fa" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Profile complete!</h2>
+      <p>Your learning profile has been saved.<br>
+         We're building your personalised plan.</p>
+      <button class="ob-success-btn" id="ob-success-cta" type="button">
+        Go to Dashboard →
+      </button>
+    </div>
+ 
+  </div><!-- /onboarding-card -->
+</div><!-- /onboarding-overlay -->
+ 
+<!-- Onboarding module — load AFTER script.js -->
+<script type="module" src="onboarding.js"></script>
+<script type="module" src="prediction.js"></script>
+ 
+</body>
+</html>

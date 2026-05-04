@@ -1,0 +1,305 @@
+════════════════════════════════════════════════════════════════════
+  EDUBUDDY — COMPLETE SETUP GUIDE (Step 3: ML Integration)
+════════════════════════════════════════════════════════════════════
+
+PREREQUISITES
+──────────────
+  ✓ Python 3.10+
+  ✓ Firebase project (edubuddy-2c5a4) already configured
+  ✓ model.pkl + preprocessor.pkl from your ML training
+  ✓ predict.py + analyze_student() confirmed working locally
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PHASE 1 — LOCAL BACKEND SETUP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1 — Folder layout (final state)
+──────────────────────────────────────
+edubuddy-backend/
+├── main.py
+├── schemas.py
+├── requirements.txt
+├── .env                       ← create from .env.example
+├── .env.example
+├── render.yaml
+├── serviceAccountKey.json     ← download from Firebase (DO NOT commit)
+├── predict.py                 ← your existing file
+├── feature_columns.json       ← your existing file
+├── models/
+│   ├── model.pkl              ← your trained model
+│   └── preprocessor.pkl       ← your sklearn preprocessor
+├── src/
+│   └── inference.py           ← your existing inference code
+├── middleware/
+│   ├── __init__.py
+│   └── auth.py
+├── routes/
+│   ├── __init__.py
+│   ├── predict.py
+│   ├── activity.py
+│   └── profile.py
+└── utils/
+    ├── __init__.py
+    ├── firebase.py
+    └── mapper.py
+
+
+STEP 2 — Get Firebase service account key
+──────────────────────────────────────────
+1. Go to: Firebase Console → Project Settings → Service Accounts
+2. Click "Generate new private key"
+3. Save as: edubuddy-backend/serviceAccountKey.json
+4. IMPORTANT: add serviceAccountKey.json to .gitignore immediately
+
+   echo "serviceAccountKey.json" >> .gitignore
+   echo ".env" >> .gitignore
+
+
+STEP 3 — Install dependencies
+──────────────────────────────
+cd edubuddy-backend
+
+# Create a virtual environment (strongly recommended)
+python -m venv venv
+source venv/bin/activate       # Windows: venv\Scripts\activate
+
+pip install -r requirements.txt
+
+
+STEP 4 — Set environment variables
+────────────────────────────────────
+cp .env.example .env
+
+Edit .env:
+  FIREBASE_SERVICE_ACCOUNT_PATH=./serviceAccountKey.json
+
+
+STEP 5 — Verify predict.py works standalone
+─────────────────────────────────────────────
+python predict.py
+# Should print: Prediction: SUCCESS or AT RISK, probability, etc.
+# If this fails, fix it BEFORE running the server.
+
+
+STEP 6 — Start the server
+──────────────────────────
+uvicorn main:app --reload --port 8000
+
+Open: http://localhost:8000/docs
+You should see the Swagger UI with /predict, /activity, /profile, /health.
+
+
+STEP 7 — Test the health endpoint
+───────────────────────────────────
+curl http://localhost:8000/health
+# Expected: {"status":"ok","service":"EduBuddy API v1"}
+
+
+STEP 8 — Test prediction with a real token
+─────────────────────────────────────────────
+From your browser DevTools console (while logged in to your site):
+
+const token = await firebase.auth().currentUser.getIdToken();
+console.log(token);   // Copy this token
+
+Then in terminal:
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+  -d '{}'
+
+Expected: JSON with prediction, success_probability, weekly_plan, etc.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PHASE 2 — FIRESTORE SETUP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Already done from Step 2? Just add the activity subcollection rules:
+
+1. Firebase Console → Firestore → Rules
+2. Copy the full rules from FIRESTORE_SCHEMA.txt
+3. Click "Publish"
+
+That's it — the activity and predictions subcollections are created
+automatically when the backend first writes to them. No manual setup.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PHASE 3 — FRONTEND INTEGRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1 — Copy prediction.js
+─────────────────────────────
+Copy prediction.js to the same directory as script.js and onboarding.js.
+
+STEP 2 — Update API_BASE in prediction.js
+──────────────────────────────────────────
+For local development:
+  const API_BASE = 'http://localhost:8000';
+
+For production (after deploying to Render):
+  const API_BASE = 'https://edubuddy-api.onrender.com';
+
+STEP 3 — Add script tag to index.html
+───────────────────────────────────────
+Open index.html. Find the section where you load onboarding.js:
+
+  <script type="module" src="onboarding.js"></script>
+
+Add the following AFTER it:
+
+  <script type="module" src="prediction.js"></script>
+
+STEP 4 — Paste dashboard snippet
+──────────────────────────────────
+Open dashboard_snippet.html and paste its content into your index.html
+(after the hero section, before the footer). This creates all the
+element IDs that prediction.js targets.
+
+STEP 5 — Patch onboarding.js
+──────────────────────────────
+Read onboarding.patch.js carefully. Make the two small edits described
+there to your existing onboarding.js. No rewrites — just 3 lines added.
+
+STEP 6 — Test end-to-end
+──────────────────────────
+1. Open index.html in your browser (VS Code Live Server)
+2. Open DevTools → Console
+3. Sign in with a NEW account (no prior onboarding)
+4. Complete the onboarding wizard
+5. Watch the console: "EduBuddy: Onboarding complete → running first prediction…"
+6. The dashboard section should appear with your AI results
+
+To manually trigger from console:
+  await window.EduBuddyML.predict();
+
+To simulate:
+  await window.EduBuddyML.simulate({
+    total_clicks: 2000,
+    active_days: 100,
+    activity_span: 120,
+    avg_assignment_score: 85
+  });
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PHASE 4 — DEPLOYMENT TO RENDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Render is the fastest free deployment for FastAPI + ML models.
+
+STEP 1 — Push backend to GitHub
+─────────────────────────────────
+Create a new private repo: edubuddy-backend
+Push your backend folder (excluding .env and serviceAccountKey.json)
+
+STEP 2 — Create Web Service on Render
+───────────────────────────────────────
+1. Go to https://render.com → New → Web Service
+2. Connect your GitHub repo
+3. Set:
+   Name:           edubuddy-api
+   Build Command:  pip install -r requirements.txt
+   Start Command:  uvicorn main:app --host 0.0.0.0 --port $PORT
+   Plan:           Free (for testing) / Starter (for production)
+
+STEP 3 — Set environment variables on Render
+─────────────────────────────────────────────
+In the Render dashboard → Environment tab, add:
+
+  FIREBASE_SERVICE_ACCOUNT_JSON
+  → Paste the ENTIRE content of serviceAccountKey.json as a single string
+
+  MODEL_VERSION
+  → xgboost-v1.0
+
+STEP 4 — Upload .pkl model files
+──────────────────────────────────
+Option A (Render Disk — paid plan):
+  Add a Disk in Render, mount at /opt/render/project/src/models/
+
+Option B (Free plan — commit models to repo):
+  ⚠ Only if models are < 100MB each (GitHub file limit)
+  Add to .gitignore exceptions:
+    !models/model.pkl
+    !models/preprocessor.pkl
+  Then commit and push.
+
+Option C (Free, large models):
+  Host on Google Drive or S3 and download on startup.
+  Add a startup script that downloads the .pkl files before uvicorn starts.
+
+STEP 5 — Update CORS in main.py
+─────────────────────────────────
+Replace:
+  "https://your-domain.com"
+With:
+  "https://youractualsite.com"  ← your GitHub Pages / Netlify URL
+
+STEP 6 — Update API_BASE in prediction.js
+──────────────────────────────────────────
+Change:
+  const API_BASE = 'http://localhost:8000';
+To:
+  const API_BASE = 'https://edubuddy-api.onrender.com';
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  COMMON MISTAKES + FIXES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MISTAKE 1: CORS error in browser
+  Fix: Check that your frontend origin is in the allow_origins list in main.py.
+  Tip: Temporarily set allow_origins=["*"] to isolate CORS vs auth issues.
+
+MISTAKE 2: "Firebase token has expired"
+  Fix: Firebase tokens expire after 1 hour.
+  prediction.js calls getIdToken() on every request — this auto-refreshes.
+  If using curl for testing, regenerate the token each time.
+
+MISTAKE 3: "Onboarding profile not found"
+  Fix: The user hasn't completed onboarding, or the Firestore write failed.
+  Check Firebase Console → Firestore → users/{uid}/onboarding/current exists.
+
+MISTAKE 4: ML import error on startup
+  Fix: Make sure predict.py is in the BACKEND ROOT (same level as main.py),
+  not inside a subfolder. The sys.path.insert in routes/predict.py handles
+  the path, but only if the file is at the root.
+
+MISTAKE 5: predict.py can't find model.pkl
+  Fix: In your inference.py / predict.py, use paths relative to the file:
+    MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "model.pkl")
+  Never use bare relative paths like "model.pkl" — they depend on CWD.
+
+MISTAKE 6: Render cold starts (free plan)
+  Fix: Free Render services sleep after 15 min of inactivity.
+  The first request after sleep takes ~30 seconds.
+  Solutions:
+    a) Upgrade to Starter plan ($7/mo)
+    b) Use UptimeRobot to ping /health every 10 minutes (free)
+    c) Show a loading spinner in the frontend with a longer timeout
+
+MISTAKE 7: serviceAccountKey.json accidentally committed to git
+  Fix immediately:
+    git rm --cached serviceAccountKey.json
+    git commit -m "remove service account key"
+  Then go to Firebase → Service Accounts → Revoke the key → Generate a new one.
+
+MISTAKE 8: Feature mismatch (model throws ValueError)
+  Fix: Your feature_columns.json defines the exact order and names.
+  The mapper.py outputs a dict — verify the keys match EXACTLY.
+  Run python -c "import json; print(json.load(open('feature_columns.json')))"
+  and compare with map_to_ml_input() output.
+
+MISTAKE 9: Activity data never gets updated (prediction always shows 0s)
+  Fix: You need to call PUT /activity whenever you have fresh data.
+  Wire it up to whatever study tracker you build in Step 4 (session logging).
+  For now, you can test by calling from DevTools:
+    await window.EduBuddyML.updateActivity({
+      total_clicks: 500, active_days: 20,
+      activity_span: 40, avg_assignment_score: 70
+    });
+
+════════════════════════════════════════════════════════════════════

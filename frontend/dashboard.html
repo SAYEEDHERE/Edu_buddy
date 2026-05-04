@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduBuddy — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="onboarding_additions.css" />
+ 
+  <style>
+    /* ── Dashboard-only layout (NO design changes to existing classes) ── */
+    .dash-shell {
+      min-height: 100vh;
+      background: var(--bg, #06080f);
+    }
+    .dash-main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .dash-page-header {
+      margin-bottom: 36px;
+    }
+    .dash-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      color: #52525b;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .dash-page-header h1 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -.4px;
+      margin-bottom: 6px;
+    }
+    .dash-page-header p {
+      font-size: 14px;
+      color: #71717a;
+    }
+ 
+    /* ── Cards ── */
+    .dash-card {
+      background: #0A0A14;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .dash-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #52525b;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+ 
+    /* ── Grid helpers ── */
+    .dash-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .dash-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .dash-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+ 
+    /* ── Metric cell ── */
+    .dash-metric-label { font-size: 12px; color: #3f3f46; margin-bottom: 8px; }
+    .dash-metric-value { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+    .dash-metric-sub   { font-size: 12px; color: #52525b; }
+    .dash-metric-sub span { color: #93c5fd; }
+ 
+    /* ── Big probability number ── */
+    .dash-prob-number {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .dash-prob-sub { font-size: 12px; font-weight: 600; letter-spacing: .06em; color: #71717a; }
+ 
+    /* ── Risk badge ── */
+    .dash-risk-value {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -.5px;
+      margin-bottom: 8px;
+    }
+    #eb-risk-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      color: #71717a;
+      letter-spacing: .04em;
+    }
+    #eb-risk-badge[data-risk="low"]      { background: rgba(16,185,129,0.1);  color: #6ee7b7; }
+    #eb-risk-badge[data-risk="moderate"] { background: rgba(251,191,36,0.1);  color: #fcd34d; }
+    #eb-risk-badge[data-risk="high"]     { background: rgba(248,113,113,0.1); color: #fca5a5; }
+ 
+    /* ── Simulation cell ── */
+    .dash-sim-cell {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .dash-sim-cell.ideal {
+      background: rgba(37,99,235,0.07);
+      border-color: rgba(37,99,235,0.2);
+    }
+    .dash-sim-label { font-size: 11px; color: #52525b; margin-bottom: 10px; }
+    .dash-sim-value { font-size: 24px; font-weight: 700; color: #93c5fd; letter-spacing: -.5px; }
+    .dash-sim-cell.ideal .dash-sim-value { color: #60a5fa; }
+ 
+    /* ── Loading / error ── */
+    #eb-loading-section {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .dash-spinner {
+      width: 32px; height: 32px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: var(--accent, #2563eb);
+      border-radius: 50%;
+      animation: dash-spin .7s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes dash-spin { to { transform: rotate(360deg); } }
+    .dash-loading-text { font-size: 14px; color: #71717a; }
+ 
+    #eb-prediction-error {
+      color: #f87171;
+      background: rgba(248,113,113,0.07);
+      border: 1px solid rgba(248,113,113,0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      display: none;
+    }
+    #eb-result-section { display: none; }
+ 
+    /* ── Refresh button ── */
+    .dash-refresh-btn {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: #71717a;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 6px;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+    }
+    .dash-refresh-btn:hover { color: #e4e4e7; border-color: rgba(255,255,255,0.2); }
+ 
+    @media (max-width: 640px) {
+      .dash-grid-2 { grid-template-columns: 1fr; }
+      .dash-grid-3 { grid-template-columns: 1fr; }
+      .dash-grid-4 { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+ 
+<body class="dash-shell">
+ 
+  <!-- ── Minimal nav — same markup/classes as index.html ── -->
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="EduBuddy"
+             class="logo-img"
+             onerror="this.style.display='none';document.querySelector('.logo-wordmark').style.display='block'" />
+        <span class="logo-wordmark">EduBuddy</span>
+      </a>
+ 
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+ 
+      <div class="nav-cta">
+        <span id="nav-user-greeting" class="nav-greeting" style="display:none;"></span>
+        <button class="dash-refresh-btn" id="dash-refresh-btn" style="display:none;">
+          ↻ Refresh prediction
+        </button>
+        <a href="#" class="btn-text" id="nav-signout-btn" style="display:none;">Sign Out</a>
+      </div>
+    </nav>
+  </header>
+ 
+  <main class="dash-main">
+ 
+    <!-- ── Loading state ── -->
+    <div id="eb-loading-section">
+      <div class="dash-spinner"></div>
+      <p class="dash-loading-text">Analysing your profile with AI…</p>
+    </div>
+ 
+    <!-- ── Error banner ── -->
+    <div id="eb-prediction-error"></div>
+ 
+    <!-- ── Result section (hidden until API responds) ── -->
+    <section id="eb-result-section">
+ 
+      <!-- Page header -->
+      <div class="dash-page-header">
+        <p class="dash-eyebrow">AI Learning Coach</p>
+        <h1>Your Personalised Prediction</h1>
+        <p>Based on your profile — here's where you stand and what to do next.</p>
+      </div>
+ 
+      <!-- Row 1: Probability + Risk -->
+      <div class="dash-grid-2" style="margin-bottom:16px;">
+ 
+        <div class="dash-card" style="text-align:center;">
+          <p class="dash-card-label">Success Probability</p>
+          <p id="eb-probability" class="dash-prob-number">—</p>
+          <p id="eb-prediction-label" class="dash-prob-sub">Calculating…</p>
+        </div>
+ 
+        <div class="dash-card" style="text-align:center;">
+          <p class="dash-card-label">Risk Level</p>
+          <p id="eb-risk-level" class="dash-risk-value">—</p>
+          <span id="eb-risk-badge" data-risk="">
+            Weeks remaining: <span id="eb-remaining-weeks">—</span>
+          </span>
+        </div>
+ 
+      </div>
+ 
+      <!-- Row 2: Current vs Target -->
+      <div class="dash-card" style="margin-bottom:16px;">
+        <p class="dash-card-label">Your Behaviour vs Successful Students</p>
+        <div class="dash-grid-3">
+ 
+          <div>
+            <p class="dash-metric-label">Active Study Days</p>
+            <p id="eb-curr-days" class="dash-metric-value">—</p>
+            <p class="dash-metric-sub">Target: <span id="eb-target-days">—</span></p>
+          </div>
+ 
+          <div>
+            <p class="dash-metric-label">LMS Clicks</p>
+            <p id="eb-curr-clicks" class="dash-metric-value">—</p>
+            <p class="dash-metric-sub">Target: <span id="eb-target-clicks">—</span></p>
+          </div>
+ 
+          <div>
+            <p class="dash-metric-label">Assignment Score</p>
+            <p id="eb-curr-score" class="dash-metric-value">—</p>
+            <p class="dash-metric-sub">Target: <span id="eb-target-score">—</span></p>
+          </div>
+ 
+        </div>
+      </div>
+ 
+      <!-- Row 3: Weekly Plan -->
+      <div class="dash-card" style="margin-bottom:16px;">
+        <p class="dash-card-label">Your Weekly Plan</p>
+        <div class="dash-grid-3">
+ 
+          <div>
+            <p class="dash-metric-label">Study Frequency</p>
+            <p id="eb-plan-days" class="dash-metric-value" style="font-size:15px;">—</p>
+          </div>
+ 
+          <div>
+            <p class="dash-metric-label">Platform Engagement</p>
+            <p id="eb-plan-clicks" class="dash-metric-value" style="font-size:15px;">—</p>
+          </div>
+ 
+          <div>
+            <p class="dash-metric-label">Grade Improvement Needed</p>
+            <p class="dash-metric-value" style="font-size:15px;">
+              +<span id="eb-extra-marks">0</span> marks
+            </p>
+          </div>
+ 
+        </div>
+      </div>
+ 
+      <!-- Row 4: Simulations -->
+      <div class="dash-card">
+        <p class="dash-card-label">What-If Simulation</p>
+        <div class="dash-grid-4">
+ 
+          <div class="dash-sim-cell">
+            <p class="dash-sim-label">If you study more</p>
+            <p id="eb-sim-study" class="dash-sim-value">—</p>
+          </div>
+ 
+          <div class="dash-sim-cell">
+            <p class="dash-sim-label">If scores improve</p>
+            <p id="eb-sim-assign" class="dash-sim-value">—</p>
+          </div>
+ 
+          <div class="dash-sim-cell">
+            <p class="dash-sim-label">If LMS improves</p>
+            <p id="eb-sim-lms" class="dash-sim-value">—</p>
+          </div>
+ 
+          <div class="dash-sim-cell ideal">
+            <p class="dash-sim-label">Ideal scenario</p>
+            <p id="eb-sim-ideal" class="dash-sim-value">—</p>
+          </div>
+ 
+        </div>
+      </div>
+ 
+    </section>
+ 
+  </main>
+ 
+ <script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+  import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB7-OoW7N2K43eX0iCUCwFl-qwnIMwUX_c",
+    authDomain: "edubuddy-2c5a4.firebaseapp.com",
+    projectId: "edubuddy-2c5a4",
+    storageBucket: "edubuddy-2c5a4.firebasestorage.app",
+    messagingSenderId: "304882114926",
+    appId: "1:304882114926:web:53373e775cf8a09bc2e17f",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const API_BASE = 'http://127.0.0.1:8000';
+
+  const greeting   = document.getElementById('nav-user-greeting');
+  const signoutBtn = document.getElementById('nav-signout-btn');
+  const refreshBtn = document.getElementById('dash-refresh-btn');
+
+  let predictionRunning = false;
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    const firstName = user.displayName
+      ? user.displayName.split(' ')[0]
+      : (user.email || 'User').split('@')[0];
+
+    if (greeting) {
+      greeting.textContent = `Hi, ${firstName}`;
+      greeting.style.display = 'inline-block';
+    }
+    if (signoutBtn) signoutBtn.style.display = 'inline-block';
+    if (refreshBtn) refreshBtn.style.display = 'inline-block';
+
+    await runPrediction(user);
+  });
+
+  signoutBtn?.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await signOut(auth);
+    window.location.href = 'index.html';
+  });
+
+  refreshBtn?.addEventListener('click', async () => {
+    const user = auth.currentUser;
+    if (user) await runPrediction(user);
+  });
+
+  async function runPrediction(user) {
+    if (predictionRunning) return;
+    predictionRunning = true;
+
+    const loadingEl = document.getElementById('eb-loading-section');
+    const errorEl   = document.getElementById('eb-prediction-error');
+    const resultEl  = document.getElementById('eb-result-section');
+
+    if (loadingEl) loadingEl.style.display = 'block';
+    if (errorEl) errorEl.style.display = 'none';
+    if (resultEl) resultEl.style.display = 'none';
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000);
+
+    try {
+      const token = await user.getIdToken(false);
+
+      const res = await fetch(`${API_BASE}/predict`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({}),
+        signal: controller.signal,
+      });
+
+      const data = await res.json().catch(() => ({}));
+      clearTimeout(timeoutId);
+
+      if (!res.ok) {
+        throw new Error(data.detail || `HTTP ${res.status}`);
+      }
+
+      renderResult(data);
+      if (loadingEl) loadingEl.style.display = 'none';
+      if (resultEl) resultEl.style.display = 'block';
+    } catch (err) {
+      clearTimeout(timeoutId);
+
+      const msg = err.name === 'AbortError'
+        ? `Request timed out after 60 s. Is the backend running at ${API_BASE}?`
+        : (err?.message || 'Unknown error');
+
+      console.error('[Dashboard] Prediction error:', msg);
+
+      if (loadingEl) loadingEl.style.display = 'none';
+      if (errorEl) {
+        errorEl.textContent = `Could not load your prediction: ${msg}`;
+        errorEl.style.display = 'block';
+      }
+    } finally {
+      predictionRunning = false;
+    }
+  }
+
+  function setText(id, val) {
+    const el = document.getElementById(id);
+    if (el && val !== undefined && val !== null) el.textContent = val;
+  }
+
+  function num(val, digits = 1) {
+    const n = Number(val);
+    return Number.isFinite(n) ? n.toFixed(digits) : '0.0';
+  }
+
+  function renderResult(data) {
+    const cb = data.current_behavior ?? {};
+    const tb = data.target_behavior ?? {};
+    const plan = data.weekly_plan ?? {};
+    const imp = data.improvement_needed ?? {};
+    const sim = data.simulation ?? {};
+
+    const successProb = Number(data.success_probability ?? 0);
+    const probPct = Math.round(successProb * 100);
+
+    setText('eb-probability', `${probPct}%`);
+    setText('eb-prediction-label', data.prediction ?? '—');
+    setText('eb-risk-level', data.risk_level ?? '—');
+    setText('eb-remaining-weeks', `${data.remaining_weeks ?? 0} weeks`);
+
+    const badge = document.getElementById('eb-risk-badge');
+    if (badge) badge.dataset.risk = String(data.risk_level ?? '').toLowerCase();
+
+    setText('eb-curr-days', cb.active_days ?? '—');
+    setText('eb-curr-clicks', cb.total_clicks ?? '—');
+    setText('eb-curr-score', `${num(cb.avg_assignment_score)}%`);
+
+    setText('eb-target-days', tb.active_days ?? '—');
+    setText('eb-target-clicks', tb.total_clicks ?? '—');
+    setText('eb-target-score', `${num(tb.avg_assignment_score)}%`);
+
+    if (plan.days_per_week !== undefined) {
+      setText('eb-plan-days', `${plan.days_per_week} days/week`);
+    }
+    if (plan.clicks_per_week !== undefined) {
+      setText('eb-plan-clicks', `${plan.clicks_per_week} clicks/week`);
+    }
+
+    setText('eb-extra-marks', imp.marks_improvement ?? 0);
+
+    const pct = (v) => `${Math.round((Number(v) || 0) * 100)}%`;
+    setText('eb-sim-study', pct(sim.study_days));
+    setText('eb-sim-assign', pct(sim.assignment));
+    setText('eb-sim-lms', pct(sim.lms));
+    setText('eb-sim-ideal', pct(sim.ideal));
+  }
+
+  window.EduBuddyML = {
+    refresh: () => {
+      const u = auth.currentUser;
+      if (u) runPrediction(u);
+    }
+  };
+</script>
+ 
+</body>
+</html>

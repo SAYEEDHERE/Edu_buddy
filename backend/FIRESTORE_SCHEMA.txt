@@ -1,0 +1,142 @@
+════════════════════════════════════════════════════════════════
+  EDUBUDDY — FIRESTORE SCHEMA (Step 3: ML Integration)
+════════════════════════════════════════════════════════════════
+
+WHY THIS STRUCTURE?
+───────────────────
+1. users/{uid}         → top-level user doc (fast reads for auth checks)
+2. users/{uid}/onboarding/current  → static profile (rarely changes)
+3. users/{uid}/activity/current    → behavioural metrics (updates frequently)
+4. users/{uid}/predictions/{id}    → full prediction history (never mutated)
+
+Each subcollection is independent. Firestore security rules can
+scope each to the owner without any cross-user access.
+Predictions are append-only — you get a full audit trail and can
+track improvement over time without overwriting anything.
+
+
+COLLECTION: users
+─────────────────
+Path: /users/{uid}
+
+Fields:
+  preferred_name       string      "Alex"
+  student_type         string      "undergraduate"
+  onboardingComplete   boolean     true
+  latest_prediction_id string      "a3f8-..." (Firestore doc ID)
+  updatedAt            string      ISO 8601 timestamp
+
+
+SUBCOLLECTION: onboarding
+──────────────────────────
+Path: /users/{uid}/onboarding/current   ← single doc, always "current"
+
+Static fields (set once during onboarding, updated only on re-edit):
+  preferred_name              string     "Alex"
+  gender                      string     "M" | "F"
+  age_band                    string     "0-35" | "35-55" | "55<="
+  student_type                string     "undergraduate"
+  highest_education           string     "A Level or Equivalent"
+  code_module                 string     "BBB"
+  code_presentation           string     "2013J"
+  studied_credits             number     60
+  region                      string     "London Region"
+  imd_band                    string     "30-40%"
+  num_of_prev_attempts        number     0
+  module_presentation_length  number     240
+  disability                  string     "N" | "Y"
+  weekly_availability         string     "10-20"   (UI-only, not used by ML)
+  onboardingComplete          boolean    true
+  submittedAt                 string     ISO 8601
+  updatedAt                   string     ISO 8601
+
+
+SUBCOLLECTION: activity
+────────────────────────
+Path: /users/{uid}/activity/current   ← single doc, overwritten on each update
+
+Behavioural fields (updated by PUT /activity from the frontend):
+  total_clicks           number     1200
+  active_days            number     45
+  activity_span          number     90      (days since first login)
+  avg_assignment_score   number     72.5    (0–100)
+  avg_clicks_per_day     number     26.67   (derived: total_clicks / active_days)
+  updatedAt              string     ISO 8601
+
+Note: This doc starts empty (or with all zeros) right after onboarding.
+      The backend defaults to 0s for the first prediction.
+
+
+SUBCOLLECTION: predictions
+───────────────────────────
+Path: /users/{uid}/predictions/{predictionId}
+
+One document per prediction run. Never updated after creation.
+
+  prediction             string     "SUCCESS" | "AT RISK"
+  success_probability    number     0.73
+  risk_level             string     "Low" | "Moderate" | "High"
+
+  current_behavior:
+    active_days            number
+    total_clicks           number
+    avg_assignment_score   number
+
+  target_behavior:
+    active_days            number     89
+    total_clicks           number     1607
+    avg_assignment_score   number     79.8
+
+  improvement_needed:
+    extra_days             number
+    extra_clicks           number
+    marks_improvement      number
+
+  weekly_plan:
+    days_per_week          number     (optional)
+    clicks_per_week        number     (optional)
+
+  simulation:
+    study_days             number     (probability if more study days)
+    assignment             number     (probability if scores improve)
+    lms                    number     (probability if more LMS clicks)
+    ideal                  number     (probability at target behaviour)
+
+  feature_input          map        (full ML input snapshot for audit)
+  model_version          string     "xgboost-v1.0"
+  remaining_weeks        number
+  created_at             string     ISO 8601
+
+
+FIRESTORE SECURITY RULES (copy-paste into Firebase console)
+────────────────────────────────────────────────────────────
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+
+      match /onboarding/{docId} {
+        allow read, write: if request.auth != null
+                           && request.auth.uid == userId;
+      }
+
+      match /activity/{docId} {
+        allow read, write: if request.auth != null
+                           && request.auth.uid == userId;
+      }
+
+      // Predictions: frontend can read; only the backend (Admin SDK) writes.
+      // Admin SDK bypasses rules entirely, so the deny on write is enforced
+      // only for direct client SDK writes from the browser.
+      match /predictions/{predId} {
+        allow read:  if request.auth != null
+                     && request.auth.uid == userId;
+        allow write: if false;   // backend-only via Admin SDK
+      }
+    }
+  }
+}
+════════════════════════════════════════════════════════════════
